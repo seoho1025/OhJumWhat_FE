@@ -6,12 +6,12 @@
 
 
 ## 명령 
-- 개발 서버: pnpm dev
+- 개발 서버: pnpm check (타입 + 린트 + FSD + 테스트)
 - 타입 검사 : pnpm exec tsc -b
 - (검증 도구 추가 후) 전체 검증: pnpm check 
 
 ## 반드시 지켜야 할 수칙 
-- 작업 완료 전 타입 검사 통과(검증 도구 추가 후에는 pnpm check)
+- 작업 완료 전 타입 검사 통과
 - git commit --no-verify 사용 금지, 훅에 막히면 원인을 고칠 것 
 - 커밋은 docs/rules/commit.md 컨벤션, 한 커밋에 한가지 변경 
 - Tailwind, 인라인 style 금지 
