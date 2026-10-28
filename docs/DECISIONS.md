@@ -56,6 +56,7 @@
 - 안전 조치: 원본 저장소(DietrichGebert/ponytail)에서만 설치, 설치 시 훅 소스 검토 
 - 충돌 대응: 디자인 시스템, FSD 구조 우선 규칙을 AGENTS.md에 명시
 - 재검토: 첫 기능 개발 후 효과 비교  
+- 설치 완료: local scope, Task board 켜기(로컬 통계), Webhook 미사용 
 
 ## D-011 Caveman 미사용 (2026-10-28)
 - 결정: 사용하지 않음 
