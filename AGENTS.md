@@ -28,7 +28,7 @@
 - API 키, 토큰, 서버 주소 하드 코딩 금지 
 
 ## 작업별로 읽을 문서 
-- UI 작업 -> docs/rules/design.md
+- UI 작업 -> docs/rules/design.md, docs/design/components.md
 - 새 기능, 파일 위치 -> docs/rules/fsd.md
 - 코드 작성 및 리팩토링 -> docs/rules/code-quality.md
 - 상태 관리, 데이터 패칭, mutation -> docs/rules/state.md
