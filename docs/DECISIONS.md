@@ -130,3 +130,11 @@
 - 다시 볼 때: 관리자 화면 착수 시 명세를 다시 받아 관리자 부분 보강, 파일이 너무 길어지면 docs/api/admin.md로 분리
 
 
+
+## D-022 API 호출: 상대 경로 + Vite 개발 프록시 (2026-10-29)
+- 맥락: 백엔드는 같은 출처만 허용(CORS 없음), 운영은 화면과 서버를 한 이미지로 배포
+- 결정: 코드에서는 /api 상대 경로만 사용, 개발 서버가 /api(WebSocket 포함), /oauth2, /login/oauth2, /logout을 API_PROXY_TARGET으로 프록시
+- 설정: changeOrigin false (Host 유지 → 구글 로그인 redirect_uri가 프론트 주소 기준), 값은 .env.local, .env.example에는 이름만
+- 이유: 운영에서 API 주소 변수가 필요 없음, 서버 주소 하드 코딩 금지 규칙
+- 대안: VITE_API_URL로 절대 주소 호출 (CORS 없어 불가), vite.config.ts에 localhost:8080 기본값
+- 검증: /api/config 401, /oauth2/authorization/google 302(redirect_uri가 프론트 포트), POST /logout CSRF 없이 403
