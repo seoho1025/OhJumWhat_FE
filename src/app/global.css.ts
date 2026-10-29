@@ -1,4 +1,5 @@
 import { globalFontFace, globalStyle } from '@vanilla-extract/css'
+import { vars } from '../shared/ui'
 
 const FONT_FAMILY = 'NanumSquare Neo'
 
@@ -9,5 +10,10 @@ globalFontFace(FONT_FAMILY, {
 })
 
 globalStyle('body', {
+  margin: 0,
+  backgroundColor: vars.bg.base,
   fontFamily: `'${FONT_FAMILY}', system-ui, -apple-system, 'Apple SD Gothic Neo', sans-serif`,
+  fontSize: vars.font.t5.size,
+  lineHeight: vars.font.t5.lineHeight,
+  fontWeight: vars.weight.regular,
 })
