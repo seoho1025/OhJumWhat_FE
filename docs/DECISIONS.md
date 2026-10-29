@@ -1,5 +1,6 @@
 # DECISIONS.md 
-결정은 추가만 하고 삭제하지 않는다. 바뀌면 새 항목을 만들고 기존 항목에 "변경됨"을 표시 
+결정은 추가만 한다. 결정 내용이 바뀌면 새 항목을 만들고 기존 항목에 "변경됨"을 표시한다.
+오타, "다음:" 같은 계획 줄은 직접 고쳐도 된다.
 
 ## D-001 내 레포에서 독립 작업 (2026-10-28)
 - 맥락: 백엔드분 래포에 백엔드 ver1 프론트가 함께 존재, 고아 브랜치로 따로 작업하기로 결정 
@@ -12,6 +13,7 @@
 - 결정: Next.js 대신 React + Vite 
 - 이유: 서버 기능이 필요 없어 Next.js의 장점을 쓸 일이 없고, 구조가 단순해 설명하기 쉬움 
 - 대안: Next.js (서버/클라이언트 경계로 복잡도 증가)
+- 변경됨: D-016
 
 ## D-003 FSD 구조 채택 (2026-10-28)
 - 맥락: 도메인(조직, 투표, 채팅, 편지, 방명록 랭킹 등)과 기능이 많음 
@@ -48,7 +50,7 @@
 ## D-009 하네스 구성 (2026-10-28)
 - 결정: AGENTS.md(목차) + @AGENTS.md + docs/rules 상세 규칙
 - 이유: 지침 파일이 길면 맥락을 낭비하고 지시를 덜 따름, AGENTS.md로 두면 다른 도구에서도 재사용 가능 
-- 다음: 검증 도구(ESLint, Steiger, Vitest, gitleaks)와 권한 설정으로 규칙을 도구화 
+- 다음: 검증 도구(oxlint, Steiger, Vitest, gitleaks)와 권한 설정으로 규칙을 도구화 
 
 ## D-010 Ponytail 도입 예정 (lite) (2026-10-28)
 - 결정: Claude Code 플러그인으로 설치, lite 모드로 시작 
@@ -62,3 +64,29 @@
 - 결정: 사용하지 않음 
 - 이유: AI 설명이 짧아지면 결정 근거를 이해할 기회가 줄고, 문서 압축은 사람이 읽기 어려워 협업 목적과 충돌 
 - 재검토: 토큰 비용이 실제 부담이 될 때 lite 모드만 고려 
+
+## D-012 entities에서 steiger insignificant-slice 끔 (2026-10-29)
+- 맥락: state.md는 조회 훅, 쿼리 키를 entities에 두지만, steiger는 한 곳에서만 쓰는 슬라이스를 에러로 봐서 첫 기능부터 pre-commit에 막힘 
+- 결정: steiger.config.ts에서 src/entities/**만 끄고 features,widgets 유지 
+- 이유: 도메인 목록은 ver1에서 확정되어 entity는 재사용이 확실함, 과잉 분리 검사는 features,widgets에서 유지 
+- 대안: 처음엔 pages에 두고 재사용 시 내리기(state.md와 충돌, 화면마다 이동 비용)
+- 검증: 임시 폴더에서 steiger 0.8로 off 전 에러, off 후 통과, features는 계속 검사됨
+
+## D-013 DECISIONS.md 수정 범위 한도 완화 (2026-10-29)
+- 결정: 결정 내용이 바뀌면 새 항목, 오타, "다음:" 계획 줄은 직접 수정 허용 
+- 이유: 계획 줄은 자주 바뀌고 원래 내용은 git 기록에 남음, 매번 새 항목을 만들면 기록만 늘어남
+
+## D-014 oxlint로 문서 규칙 강제 (예정) (2026-10-29) 
+- 결정: oxlint에 인라인 style(react/forbid-dom-props), fetch(no-restricted-globals, shared/api 제외) 금지 추가 
+- 이유: D-008과 같음 
+
+## D-015 Claude 권한 deny로 규칙 강제 (예정) (2026-10-29)
+- 결정: .claude/settings.json에 --no-verify, .env 읽기, 수정, ../OhJumWhat 쓰기 deny
+- 이유: D-008과 같음 
+- 한계: Bash로 파일을 쓰는 경우는 경로 deny를 막지 못함, 문서 규칙 유지 
+
+## D-016 Vite React 플러그인: SWC 대신 @vitejs/plugin-react (2026-10-29) 
+- 맥락: D-002에 SWC로 적었으나 초기 설정부터 @vitejs/plugin-react(v6)로 생성됨
+- 결정: @vitejs/plugin-react 사용
+- 이유: Babel을 사용하게 될 경우 SWC를 사용하는 것이 옳았으나 vite 8은 Rolldown/Oxc 기반이라 기본 변환에 Babel을 사용하지 않기 때문에
+- 대안: @vitejs/plugin-react-swc
