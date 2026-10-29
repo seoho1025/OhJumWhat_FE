@@ -3,6 +3,11 @@
   "plugins": ["react", "typescript", "oxc"],
   "rules": {
     "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
+    "react/only-export-components": ["warn", { "allowConstantExport": true }],
+    "react/forbid-dom-props": ["error", { "forbid": ["style"] }],
+    "no-restricted-globals": ["error", { "name": "fetch", "message": "shared/api를 사용하세요" }]
+  },
+  "overrides": [
+    { "files": ["src/shared/api/**"], "rules": { "no-restricted-globals": "off" } }
+  ]
 }

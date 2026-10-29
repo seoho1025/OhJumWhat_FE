@@ -76,7 +76,7 @@
 - 결정: 결정 내용이 바뀌면 새 항목, 오타, "다음:" 계획 줄은 직접 수정 허용 
 - 이유: 계획 줄은 자주 바뀌고 원래 내용은 git 기록에 남음, 매번 새 항목을 만들면 기록만 늘어남
 
-## D-014 oxlint로 문서 규칙 강제 (예정) (2026-10-29) 
+## D-014 oxlint로 문서 규칙 강제 (2026-10-29) 
 - 결정: oxlint에 인라인 style(react/forbid-dom-props), fetch(no-restricted-globals, shared/api 제외) 금지 추가 
 - 이유: D-008과 같음 
 
