@@ -27,6 +27,7 @@
 - 결정: TDS 패키지를 설치하지 않고, API 설계 방식만 참고해 자체 구현 
 - 이유: TDS는 앱인토스 서비스 범위에서만 사용 허가됨, 직접 설계가 포폴에도 유리 
 - 참고 범위: props 구성(size/color/variant), 컴포넌트 단위 / 에셋 , 색상, 값 폰트는 사용 안함 
+- 변경됨: D-017
 
 ## D-005 vanilla-extract로 스타일링 (2026-10-28)
 - 결정: vanilla-extract + recipes 
@@ -90,3 +91,17 @@
 - 결정: @vitejs/plugin-react 사용
 - 이유: Babel을 사용하게 될 경우 SWC를 사용하는 것이 옳았으나 vite 8은 Rolldown/Oxc 기반이라 기본 변환에 Babel을 사용하지 않기 때문에
 - 대안: @vitejs/plugin-react-swc
+
+## D-017 디자인 시스템을 TDS 값 기준으로 (2026-10-29)
+- 맥락: 오점왓 ver1 디자인을 그대로 따르지 않기로 함, ver1은 화면 구성 참고용
+- 결정: 색상, 타이포그래피, 컴포넌트 크기, CTA, 컴포넌트 props를 TDS 문서 값 그대로 사용하고 변수명만 프로젝트 규칙으로 변경
+- 범위: TDS 패키지(@toss/tds-*), 토스 로고, Tossface, 토스 에셋은 사용 안 함
+- 이유: ver1 디자인 대신 TDS 방식으로 일관된 디자인 시스템 구성
+- 대안: ver1 Figma 토큰 유지 (D-004 방식)
+- 기록: docs/rules/design.md, docs/design/components.md
+
+## D-018 글꼴: NanumSquare Neo 직접 호스팅 (2026-10-29)
+- 결정: NanumSquare Neo Variable woff2 하나를 public/fonts에서 제공
+- 이유: TDS 전용 글꼴은 비공개, 가변 폰트(100~900)라 TDS 굵기 5종을 모두 표현, 웹용 압축 포맷(1.5MB), 외부 CDN 의존 없음
+- 대안: 설치된 OTF 2개(700·800만 있어 본문도 굵게 보임, 3.3MB), Noto Sans KR (ver1)
+- 확인 필요: 폰트 라이선스(나눔글꼴 OFL 여부)
