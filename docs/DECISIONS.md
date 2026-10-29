@@ -138,3 +138,12 @@
 - 이유: 운영에서 API 주소 변수가 필요 없음, 서버 주소 하드 코딩 금지 규칙
 - 대안: VITE_API_URL로 절대 주소 호출 (CORS 없어 불가), vite.config.ts에 localhost:8080 기본값
 - 검증: /api/config 401, /oauth2/authorization/google 302(redirect_uri가 프론트 포트), POST /logout CSRF 없이 403
+
+## D-023 앱 기반: 데이터 라우터 + 401 전역 처리 (2026-10-29)
+- 결정
+  - 라우터: createBrowserRouter + RouterProvider(react-router/dom), 라우트는 src/app/router.tsx, 경로 상수는 shared/config ROUTES
+  - 401: QueryCache, MutationCache의 onError 한곳에서 로그인 화면으로 이동 (이미 /login이면 이동 안 함)
+  - 재시도: 4xx는 재시도 없음, 5xx와 네트워크 오류만 1번 (mutation은 기본값 재시도 없음)
+- 이유: 401은 어느 요청에서 나든 세션이 끝난 것, 화면마다 처리하면 빠뜨림 / 데이터 라우터는 errorElement와 router.navigate로 컴포넌트 밖 이동 가능
+- 대안: 화면마다 Guard에서 401 처리, BrowserRouter + Routes(선언형)
+- 남은 것: /login 페이지 없음 → 지금은 401이면 404 화면, pages/login 만들 때 연결
