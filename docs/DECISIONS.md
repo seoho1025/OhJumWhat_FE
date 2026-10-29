@@ -81,9 +81,10 @@
 - 결정: oxlint에 인라인 style(react/forbid-dom-props), fetch(no-restricted-globals, shared/api 제외) 금지 추가 
 - 이유: D-008과 같음 
 
-## D-015 Claude 권한 deny로 규칙 강제 (예정) (2026-10-29)
-- 결정: .claude/settings.json에 --no-verify, .env 읽기, 수정, ../OhJumWhat 쓰기 deny
-- 이유: D-008과 같음 
+## D-015 Claude 권한 deny로 규칙 강제 (2026-10-29)
+- 결정: .claude/settings.json(커밋)에 --no-verify, git commit -n, .env 계열 읽기·수정 deny / .claude/settings.local.json(개인)에 백엔드 레포 쓰기 deny
+- 이유: D-008과 같음, 백엔드 경로는 PC마다 달라 개인 설정에 둠
+- 검증: --no-verify 커밋, .env 읽기, 백엔드 레포 쓰기 모두 거부 확인 / .env.example은 허용
 - 한계: Bash로 파일을 쓰는 경우는 경로 deny를 막지 못함, 문서 규칙 유지 
 
 ## D-016 Vite React 플러그인: SWC 대신 @vitejs/plugin-react (2026-10-29) 
