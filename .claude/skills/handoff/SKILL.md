@@ -1,16 +1,13 @@
-----
-name: handoff 
+---
+name: handoff
 description: 작업 세션을 끝내거나, 기능(슬라이스) 하나를 마쳤거나, 컨텍스트가 많이 찼을 때 현재 상태를 docs/HANDOFF.md에 저장한다. 새 세션에서 이어받을 때도 사용한다.
-----
+---
 
 # Handoff 생성 
-- git status, git log --online -10 실행 
-- pnpm exec tsc -b 실행(검증 도구 추가 후에는 pnpm check)
-- 확인하지 못한 것은 "미검증"으로 표시 
 
 ## 1. 사실 수집 (추측 금지)
-- git status, git log --online -10 실행 
-- pnpm exec tsc -b 실행(검증 도구 추가 후에는 pnpm check)
+- git status, git log --oneline -10 실행 
+- pnpm check 실행
 - 확인하지 못한 것은 "미검증"으로 표시 
 
 ## 2. docs/HANDOFF.md 덮어쓰기 (아래 섹션 고정)
@@ -30,7 +27,7 @@ description: 작업 세션을 끝내거나, 기능(슬라이스) 하나를 마�
 - docs: handoff 갱신 (<현재 단계>)
 
 ## 이어받기 (새 세션)
-1. AGENTS.md -> docs/HAND
-2. git log, 타입 검사로 문서 내용이 실제와 맞는지 확인
+1. AGENTS.md -> docs/HANDOFF.md 순서로 읽기
+2. git log, pnpm check로 문서 내용이 실제와 맞는지 확인
 3. 다르면 작업 전에 먼저 보고 
 4. "다음 할 일" 1번부터 시작 

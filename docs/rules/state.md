@@ -15,6 +15,6 @@
 - 제출 버튼은 isPending 동안 비활성화 (중복 제출 방지)
 
 ## API 호출 
-- 컴포넌트에서 fetch 직접 호출 금지, shard/api 사용
-- 모든 요청은 쿠키 포함 + CSRF (shard/api에서 일괄 처리)
+- 컴포넌트에서 fetch 직접 호출 금지, shared/api 사용
+- 모든 요청은 쿠키 포함 + CSRF (shared/api에서 일괄 처리)
 

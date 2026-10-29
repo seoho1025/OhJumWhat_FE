@@ -1,17 +1,17 @@
 ## 프로젝트 
 - 오점왓(OhJumWhat) ver2 프론트엔드 
-- React + TypeScript + Vite(SWC), vanilla-extreact, FSD 구조 
+- React + TypeScript + Vite, vanilla-extract, FSD 구조 
 - 상태 : TanStack Query(서버), React Router(URL), Zustand(UI)
 - 백엔드는 별도 서버, API는 docs/API.md
 
 
 ## 명령 
-- 개발 서버: pnpm check (타입 + 린트 + FSD + 테스트)
+- 개발 서버: pnpm dev
 - 타입 검사 : pnpm exec tsc -b
-- (검증 도구 추가 후) 전체 검증: pnpm check 
+- 전체 검증: pnpm check (타입 + 린트 + FSD + 테스트)
 
 ## 반드시 지켜야 할 수칙 
-- 작업 완료 전 타입 검사 통과
+- 작업 완료 전 pnpm check 통과
 - git commit --no-verify 사용 금지, 훅에 막히면 원인을 고칠 것 
 - 커밋은 docs/rules/commit.md 컨벤션, 한 커밋에 한가지 변경 
 - Tailwind, 인라인 style 금지 
@@ -36,7 +36,7 @@
 - API 연동 -> docs/API.md 
 
 ## Ponytail과 함께 사용할 때 
-- shard/ui 컴포넌트, 디자인 토큰, FSD 구조는 "이미 있는 것"으로 간주하고 우선 사용 
+- shared/ui 컴포넌트, 디자인 토큰, FSD 구조는 "이미 있는 것"으로 간주하고 우선 사용 
 - 브라우저 기본 요소보다 shared/ui 컴포넌트 우선 
 - FSD 세그먼트 폴더와 index.ts는 줄이지 말 것 
 
@@ -46,5 +46,5 @@
 
 ## 세션 시작 시 
 - docs/HANDOFF.md 가 있으면 먼저 확인하고 읽을 것 
-- 타입 검사로 현재 상태 확인 
+- pnpm check로 현재 상태 확인 
 - 문서와 실제 코드가 다르면 작업 전 보고할 것 
