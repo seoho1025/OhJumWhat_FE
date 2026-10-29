@@ -38,8 +38,9 @@
 - 값 직접 입력 금지, 토큰 사용 
 
 ## 글꼴 
-- TDS 전용 글꼴 대신 NanumSquare Neo 가변 폰트(woff2, 굵기 100~900) 직접 호스팅 
-- 파일 위치: public/fonts/, font-display: swap 
+- TDS 전용 글꼴 대신 NanumSquare Neo 직접 호스팅 (D-018) 
+- 파일: public/fonts/NanumSquareNeo-Variable.woff2 (가변 폰트, 굵기 100~900) / font-display: swap 
+- @font-face와 body 글꼴은 src/app/global.css.ts 
 - 대체 글꼴: system-ui, -apple-system, 'Apple SD Gothic Neo', sans-serif 
 
 ## Button (TDS Button) 
