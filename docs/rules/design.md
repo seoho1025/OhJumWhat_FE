@@ -16,6 +16,8 @@
 - 원색: grey, blue, red, orange, yellow, green, teal, purple 각 50~900, greyOpacity 50~900 
 - 값은 TDS Colors 문서 그대로 (예: grey900 #191f28, blue500 #3182f6, red500 #f04452) 
 - 의미 토큰(배경): base #FFFFFF, grey = grey100, layered #FFFFFF, floated #FFFFFF 
+- 브랜드: primary = orange800(#ed6700), onPrimary = 흰색 (D-019) → Button color primary가 이 색을 씀 
+- 토큰 파일: src/shared/ui/theme.css.ts 
 - 텍스트, 테두리 의미 토큰은 TDS 문서에 없어 원색에서 정의 (theme.css.ts에서 결정 후 여기에 기록) 
 - 컴포넌트는 의미 토큰 우선, 원색 직접 사용은 Badge처럼 색 자체가 의미인 경우만 
 
@@ -106,6 +108,7 @@
 |---|---|
 | colors.blue500 | vars.palette.blue500 |
 | colors.background / greyBackground / layeredBackground / floatedBackground | vars.bg.base / grey / layered / floated |
+| (TDS primary blue500) | vars.brand.primary (orange800), vars.brand.onPrimary |
 | Typography 1, sub Typography 1 | vars.font.t1, vars.font.st1 |
 | _Bold, _Medium … | vars.weight.bold, vars.weight.medium … |
 | adaptive.grey700 (컴포넌트 안 색) | vars.palette.grey700 (다크모드 도입 시 의미 토큰으로 분리) |
