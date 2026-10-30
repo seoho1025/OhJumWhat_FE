@@ -11,7 +11,7 @@
     "prepare": "husky",
     "test": "vitest run --passWithNoTests",
     "lint:fsd": "steiger ./src",
-    "check": "tsc -b && oxlint && steiger ./src && vitest run --passWithNoTests"
+    "check": "tsc -b && oxlint && steiger ./src && vitest run --passWithNoTests && vite build"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.105.0",
