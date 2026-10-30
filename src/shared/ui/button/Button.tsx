@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react'
-import { button, type ButtonVariants } from './button.css.ts'
+import { buttonStyle, type ButtonVariants } from './button.css.ts'
 
 // HTML button의 color 속성과 recipe의 color가 겹쳐 recipe 쪽을 남김
 type ButtonProps = Omit<ComponentProps<'button'>, keyof ButtonVariants> &
@@ -24,7 +24,7 @@ export function Button({
     <button
       {...rest}
       type={type}
-      className={button({ color, variant, size, display })}
+      className={buttonStyle({ color, variant, size, display })}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
     >

@@ -5,7 +5,7 @@ import { vars } from '../theme.css.ts'
 const DISABLED_OPACITY = 0.4
 const FOCUS_RING_WIDTH = '2px'
 
-export const button = recipe({
+export const buttonStyle = recipe({
   base: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -66,4 +66,4 @@ export const button = recipe({
   },
 })
 
-export type ButtonVariants = NonNullable<RecipeVariants<typeof button>>
+export type ButtonVariants = NonNullable<RecipeVariants<typeof buttonStyle>>
