@@ -32,7 +32,8 @@ export const buttonStyle = recipe({
     cursor: 'default',
     // 브라우저가 버튼에 따로 주는 글꼴 대신 body 글꼴을 물려받음
     fontFamily: 'inherit',
-    fontWeight: vars.weight.semibold,
+    // 굵게 보이지 않도록 regular (D-035)
+    fontWeight: vars.weight.regular,
     // <a>에 buttonStyle을 쓸 때 밑줄 제거 (D-028)
     textDecoration: 'none',
     '::after': {
