@@ -21,8 +21,8 @@ export const SECTION_SPACE = SPACE[96]
 export const BLOCK_GAP = SPACE[48]
 export const CONTENT_MAX = '48rem'
 export const WIDE_MAX = '64rem'
-export const CARD_RADIUS = '1.5rem'
-export const CARD_SHADOW = `0 ${SPACE[12]} ${SPACE[32]} ${vars.palette.greyOpacity200}`
+// TDS 문서 예시의 카드형 묶음 둥글기 20px (Border 예시), TDS는 그림자 대신 배경 대비로 구분 (D-030)
+export const CARD_RADIUS = SPACE[20]
 export const HAIRLINE = '1px'
 
 // 히어로 목업이 다음 섹션으로 겹쳐 내려오는 길이, 다음 섹션 위쪽 여백에 같은 값을 더함

@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CARD_SHADOW, CONTENT_MAX, enterAnimation, GUTTER, PHONE_OVERLAP, SECTION_SPACE, SPACE } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, enterAnimation, GUTTER, PHONE_OVERLAP, SECTION_SPACE, SPACE } from './landing.css.ts'
 
 // 문구가 먼저, 목업이 조금 뒤에 떠오름
 const PHONE_ENTER_DELAY = '0.2s'
@@ -46,7 +46,7 @@ export const loginError = style({
   margin: 0,
   padding: `${SPACE[12]} ${SPACE[16]}`,
   borderRadius: CARD_RADIUS,
-  backgroundColor: vars.palette.orange50,
+  backgroundColor: vars.brand.weak,
   fontSize: vars.font.t6.size,
   lineHeight: vars.font.t6.lineHeight,
 })
@@ -57,9 +57,8 @@ export const phoneSlot = style({
   aspectRatio: PHONE_RATIO,
   marginBottom: `calc(-1 * ${PHONE_OVERLAP})`,
   borderRadius: PHONE_RADIUS,
-  border: `${PHONE_BEZEL} solid ${vars.palette.grey900}`,
+  border: `${PHONE_BEZEL} solid ${vars.bg.inverse}`,
   backgroundImage: `linear-gradient(to bottom, ${vars.palette.orange50}, ${vars.bg.base})`,
-  boxShadow: CARD_SHADOW,
   ...enterAnimation,
   animationDelay: PHONE_ENTER_DELAY,
 })

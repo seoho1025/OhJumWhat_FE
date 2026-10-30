@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CARD_SHADOW, CONTENT_MAX, GUTTER, SECTION_SPACE, SPACE, WIDE_MAX } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, GUTTER, SECTION_SPACE, SPACE, WIDE_MAX } from './landing.css.ts'
 
 // 데스크톱 2단: 설명보다 화면 자리를 넓게
 const DESKTOP_COLUMNS = '1fr 1.4fr'
@@ -37,7 +37,6 @@ export const card = style({
   padding: `${SPACE[32]} ${SPACE[24]}`,
   borderRadius: CARD_RADIUS,
   backgroundColor: vars.bg.layered,
-  boxShadow: CARD_SHADOW,
   '@media': {
     [breakpoint.desktop]: { gridTemplateColumns: DESKTOP_COLUMNS, alignItems: 'center', padding: SPACE[48] },
   },

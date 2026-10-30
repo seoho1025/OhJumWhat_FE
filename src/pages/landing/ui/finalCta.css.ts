@@ -8,7 +8,7 @@ export const section = style({
   alignItems: 'center',
   gap: SPACE[32],
   padding: `calc(${SECTION_SPACE} * 1.5) ${GUTTER}`,
-  backgroundColor: vars.palette.grey900,
+  backgroundColor: vars.bg.inverse,
   backgroundImage: `radial-gradient(50% 60% at 50% 100%, ${vars.palette.orange900}, transparent)`,
   textAlign: 'center',
 })

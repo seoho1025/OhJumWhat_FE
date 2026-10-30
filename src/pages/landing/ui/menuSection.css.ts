@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CARD_SHADOW, GUTTER, HAIRLINE, PHONE_OVERLAP, SECTION_SPACE, SPACE } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, GUTTER, HAIRLINE, PHONE_OVERLAP, SECTION_SPACE, SPACE } from './landing.css.ts'
 
 // 메뉴 카드: 모바일은 다섯 장이 390px 화면에 들어가는 크기, 겹침은 카드끼리 살짝 포개지는 정도
 const CARD_WIDTH = '4.75rem'
@@ -45,9 +45,8 @@ export const card = style({
   padding: CARD_PADDING,
   boxSizing: 'border-box',
   borderRadius: CARD_RADIUS,
-  border: `${HAIRLINE} solid ${vars.palette.orange100}`,
+  border: `${HAIRLINE} solid ${vars.border.subtle}`,
   backgroundImage: `linear-gradient(${CARD_SHEEN_ANGLE}, ${vars.bg.base}, ${vars.palette.orange50})`,
-  boxShadow: CARD_SHADOW,
   selectors: {
     '&:nth-child(1)': { transform: `rotate(-${TILT_OUTER}) translateY(${OUTER_DROP})` },
     '&:nth-child(2)': { transform: `rotate(-${TILT_INNER})` },
