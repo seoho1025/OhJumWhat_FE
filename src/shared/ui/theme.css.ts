@@ -112,6 +112,8 @@ export const vars = createGlobalTheme(':root', {
   text: {
     primary: palette.grey900,
     secondary: palette.grey600,
+    // 흰 배경 3.0:1로 본문 AA(4.5:1) 미달, 보조 문구에만 (D-036)
+    tertiary: palette.grey500,
     inverse: '#ffffff',
     inverseSecondary: palette.grey400,
   },
