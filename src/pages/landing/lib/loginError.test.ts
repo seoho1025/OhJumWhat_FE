@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { LOGIN_ERROR_MESSAGES } from '../config/content.ts'
-import { loginErrorMessage } from './loginError.ts'
+import { loginErrorMessage, LOGIN_ERROR_MESSAGES } from './loginError.ts'
 
 describe('loginErrorMessage', () => {
   it('error 쿼리가 없으면 문구를 보여 주지 않는다', () => {

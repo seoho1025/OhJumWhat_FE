@@ -1,22 +1,29 @@
-import { MENU_SECTION } from '../config/content.ts'
-import * as css from './landing.css.ts'
+import { accentLine, line, sectionTitle } from './landing.css.ts'
+import * as css from './menuSection.css.ts'
+
+// 카드 기울기는 nth-child 순서라 다섯 개에 맞춰져 있음 (menuSection.css.ts)
+const MENUS = [
+  { label: 'Korean', name: '한식' },
+  { label: 'Chinese', name: '중식' },
+  { label: 'Japanese', name: '일식' },
+  { label: 'Snack', name: '분식' },
+  { label: 'Salad', name: '샐러드' },
+] as const
 
 export function MenuSection() {
-  const [first, accent] = MENU_SECTION.title
-
   return (
-    <section className={css.menuSection} aria-labelledby="menu-title">
-      <h2 id="menu-title" className={css.sectionTitle}>
-        <span className={css.line}>{first}</span>
-        <span className={css.accentLine}>{accent}</span>
+    <section className={css.section} aria-labelledby="menu-title">
+      <h2 id="menu-title" className={sectionTitle}>
+        <span className={line}>어떤 메뉴든</span>
+        <span className={accentLine}>한 번에 투표로</span>
       </h2>
-      <ul className={css.menuCards}>
-        {MENU_SECTION.cards.map((card) => (
-          <li key={card.name} className={css.menuCard}>
-            <span className={css.menuLabel} lang="en">
-              {card.label}
+      <ul className={css.cards}>
+        {MENUS.map((menu) => (
+          <li key={menu.name} className={css.card}>
+            <span className={css.label} lang="en">
+              {menu.label}
             </span>
-            <span className={css.menuName}>{card.name}</span>
+            <span className={css.name}>{menu.name}</span>
           </li>
         ))}
       </ul>
