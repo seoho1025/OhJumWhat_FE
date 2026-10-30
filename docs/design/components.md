@@ -54,7 +54,7 @@ TDS Mobile 컴포넌트 카탈로그 (2026-10-29 문서 기준 요약, 원문 �
 | ListRow | left, contents, right, withArrow, border(indented/none), verticalPadding(small 8/medium 12/large 16/xlarge 24), horizontalPadding(small 20/medium 24), disabled, disabledStyle(type1/type2) | 하위 AssetIcon(shape), IconButton, Texts, Loader |
 | ListHeader | title(TitleParagraph/TitleSelector/TitleTextButton), description, descriptionPosition(top/bottom), right(RightText/RightArrow), titleWidthRatio(0.66) | |
 | ListFooter | children("더 보기"), icon, border(full/indented/none), textColor·iconColor(blue500), shadow | |
-| BoardRow | title, prefix, icon, children, initialOpened, isOpened + onOpen/onClose | 아코디언, Text 기본 t6, Prefix 기본 st8·blue500 |
+| BoardRow | title, prefix, icon, children, initialOpened, isOpened + onOpen/onClose | 아코디언(주로 Q&A), 제목은 button + aria-expanded, Prefix와 제목 간격 8, Prefix st8 regular·blue500(프로젝트는 brand.primary), 본문 t6·아래 여백 24, ArrowIcon 24·grey400. 여닫는 움직임과 행 간격은 원문에 없음 → 랜딩 FAQ에서 0.3s 높이 전환, 화살표 90° 회전, 행 20/24 (D-033) |
 | TableRow | left, right, align(left/space-between, 필수), leftRatio | |
 | GridList | column(1/2/3, 기본 3), Item(image, children) | |
 | Border | variant(full 기본/padding24/height16), height(height16일 때만, 높이 직접 지정) | 항목 구분: full(전체 너비) 또는 padding24(여백 24, 원문이 "양쪽"과 "왼쪽"으로 다르게 설명 → 구현 전 렌더링 확인), 구간 구분: height16(높이 16 띠). 선 두께·색은 원문에 없음 → 테두리 의미 토큰 정할 때 결정 |
