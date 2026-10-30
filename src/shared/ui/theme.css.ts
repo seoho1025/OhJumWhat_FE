@@ -106,6 +106,13 @@ export const vars = createGlobalTheme(':root', {
     layered: '#ffffff',
     floated: '#ffffff',
   },
+  // TDS 문서에 없어 원색에서 정의, 흰 배경 대비 primary 16.6:1, secondary 4.6:1 (D-027)
+  text: {
+    primary: palette.grey900,
+    secondary: palette.grey600,
+    inverse: '#ffffff',
+    inverseSecondary: palette.grey400,
+  },
   // 브랜드는 TDS blue 대신 orange800 (D-019)
   brand: {
     primary: palette.orange800,
