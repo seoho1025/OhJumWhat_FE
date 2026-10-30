@@ -1,9 +1,7 @@
-import { GOOGLE_LOGIN_PATH } from '../../../shared/config'
-import { buttonStyle } from '../../../shared/ui'
 import cheer from './characters/cheer.webp'
 import { useInView } from '../lib/useInView.ts'
 import * as css from './finalCta.css.ts'
-import { character, floatingShadow, inView, line, pill, reveal, section } from './landing.css.ts'
+import { character, inView, line, reveal, section } from './landing.css.ts'
 
 export function FinalCta() {
   const { ref, inView: visible } = useInView<HTMLDivElement>()
@@ -16,9 +14,6 @@ export function FinalCta() {
           <span className={line}>내일 점심부터</span>
           <span className={line}>같이 정해요</span>
         </h2>
-        <a href={GOOGLE_LOGIN_PATH} className={`${buttonStyle({ size: 'large' })} ${pill} ${floatingShadow}`}>
-          시작하기
-        </a>
       </div>
     </section>
   )
