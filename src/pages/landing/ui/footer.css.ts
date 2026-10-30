@@ -1,14 +1,14 @@
 import { style } from '@vanilla-extract/css'
 import { vars } from '../../../shared/ui'
-import { GUTTER } from './landing.css.ts'
+import { GUTTER, HAIRLINE, SPACE } from './landing.css.ts'
 
 export const footer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.5rem',
-  padding: `3rem ${GUTTER}`,
+  gap: SPACE[8],
+  padding: `${SPACE[48]} ${GUTTER}`,
   backgroundColor: vars.palette.grey900,
-  borderTop: `1px solid ${vars.palette.grey800}`,
+  borderTop: `${HAIRLINE} solid ${vars.palette.grey800}`,
   color: vars.text.inverseSecondary,
   fontSize: vars.font.t7.size,
   lineHeight: vars.font.t7.lineHeight,

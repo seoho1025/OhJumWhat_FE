@@ -1,8 +1,14 @@
 import { style } from '@vanilla-extract/css'
 import { vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CARD_SHADOW, CONTENT_MAX, enterAnimation, GUTTER, PHONE_OVERLAP, SECTION_SPACE } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, CARD_SHADOW, CONTENT_MAX, enterAnimation, GUTTER, PHONE_OVERLAP, SECTION_SPACE, SPACE } from './landing.css.ts'
 
+// 문구가 먼저, 목업이 조금 뒤에 떠오름
 const PHONE_ENTER_DELAY = '0.2s'
+// 휴대폰 목업: 데스크톱 최대 폭, 좁은 화면에서는 화면 폭의 70%
+const PHONE_WIDTH = 'min(16rem, 70vw)'
+const PHONE_RATIO = '9 / 19.5'
+const PHONE_RADIUS = '2.5rem'
+const PHONE_BEZEL = SPACE[8]
 
 export const hero = style({
   position: 'relative',
@@ -24,7 +30,7 @@ export const content = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: '1.25rem',
+  gap: SPACE[20],
   maxWidth: CONTENT_MAX,
   ...enterAnimation,
 })
@@ -38,7 +44,7 @@ export const description = style({
 
 export const loginError = style({
   margin: 0,
-  padding: '0.75rem 1rem',
+  padding: `${SPACE[12]} ${SPACE[16]}`,
   borderRadius: CARD_RADIUS,
   backgroundColor: vars.palette.orange50,
   fontSize: vars.font.t6.size,
@@ -47,12 +53,12 @@ export const loginError = style({
 
 // 에셋이 들어올 자리, 비율을 고정해 교체해도 레이아웃이 움직이지 않음
 export const phoneSlot = style({
-  width: 'min(16rem, 70vw)',
-  aspectRatio: '9 / 19.5',
+  width: PHONE_WIDTH,
+  aspectRatio: PHONE_RATIO,
   marginBottom: `calc(-1 * ${PHONE_OVERLAP})`,
-  borderRadius: '2.5rem',
-  border: `0.5rem solid ${vars.palette.grey900}`,
-  backgroundImage: `linear-gradient(180deg, ${vars.palette.orange50}, ${vars.bg.base})`,
+  borderRadius: PHONE_RADIUS,
+  border: `${PHONE_BEZEL} solid ${vars.palette.grey900}`,
+  backgroundImage: `linear-gradient(to bottom, ${vars.palette.orange50}, ${vars.bg.base})`,
   boxShadow: CARD_SHADOW,
   ...enterAnimation,
   animationDelay: PHONE_ENTER_DELAY,

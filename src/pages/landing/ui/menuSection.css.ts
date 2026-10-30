@@ -1,6 +1,21 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CARD_SHADOW, GUTTER, PHONE_OVERLAP, SECTION_SPACE } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, CARD_SHADOW, GUTTER, HAIRLINE, PHONE_OVERLAP, SECTION_SPACE, SPACE } from './landing.css.ts'
+
+// 메뉴 카드: 모바일은 다섯 장이 390px 화면에 들어가는 크기, 겹침은 카드끼리 살짝 포개지는 정도
+const CARD_WIDTH = '4.75rem'
+const CARD_WIDTH_DESKTOP = '9rem'
+const CARD_OVERLAP = '-0.375rem'
+const CARD_OVERLAP_DESKTOP = '-0.75rem'
+const CARD_PADDING = '0.875rem'
+const CARD_RATIO = '3 / 4'
+const CARD_SHEEN_ANGLE = '160deg'
+
+// 부채꼴: 바깥 카드는 더 기울고 아래로, 가운데 카드는 위로
+const TILT_OUTER = '12deg'
+const TILT_INNER = '6deg'
+const OUTER_DROP = SPACE[24]
+const CENTER_LIFT = SPACE[12]
 
 export const section = style({
   display: 'flex',
@@ -23,25 +38,25 @@ export const cards = style({
 export const card = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.25rem',
-  width: '4.75rem',
-  aspectRatio: '3 / 4',
-  marginInline: '-0.375rem',
-  padding: '0.875rem',
+  gap: SPACE[4],
+  width: CARD_WIDTH,
+  aspectRatio: CARD_RATIO,
+  marginInline: CARD_OVERLAP,
+  padding: CARD_PADDING,
   boxSizing: 'border-box',
   borderRadius: CARD_RADIUS,
-  border: `1px solid ${vars.palette.orange100}`,
-  backgroundImage: `linear-gradient(160deg, ${vars.bg.base}, ${vars.palette.orange50})`,
+  border: `${HAIRLINE} solid ${vars.palette.orange100}`,
+  backgroundImage: `linear-gradient(${CARD_SHEEN_ANGLE}, ${vars.bg.base}, ${vars.palette.orange50})`,
   boxShadow: CARD_SHADOW,
   selectors: {
-    '&:nth-child(1)': { transform: 'rotate(-12deg) translateY(1.5rem)' },
-    '&:nth-child(2)': { transform: 'rotate(-6deg)' },
-    '&:nth-child(3)': { transform: 'translateY(-0.75rem)' },
-    '&:nth-child(4)': { transform: 'rotate(6deg)' },
-    '&:nth-child(5)': { transform: 'rotate(12deg) translateY(1.5rem)' },
+    '&:nth-child(1)': { transform: `rotate(-${TILT_OUTER}) translateY(${OUTER_DROP})` },
+    '&:nth-child(2)': { transform: `rotate(-${TILT_INNER})` },
+    '&:nth-child(3)': { transform: `translateY(-${CENTER_LIFT})` },
+    '&:nth-child(4)': { transform: `rotate(${TILT_INNER})` },
+    '&:nth-child(5)': { transform: `rotate(${TILT_OUTER}) translateY(${OUTER_DROP})` },
   },
   '@media': {
-    [breakpoint.desktop]: { width: '9rem', marginInline: '-0.75rem', padding: '1.25rem' },
+    [breakpoint.desktop]: { width: CARD_WIDTH_DESKTOP, marginInline: CARD_OVERLAP_DESKTOP, padding: SPACE[20] },
   },
 })
 

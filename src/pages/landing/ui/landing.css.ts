@@ -2,21 +2,36 @@ import { keyframes, style } from '@vanilla-extract/css'
 import { vars } from '../../../shared/ui'
 
 // shortcut: 간격·둥글기·그림자 토큰이 없어 랜딩 안에서만 쓰는 값, 토큰이 정해지면 교체 (D-027)
-export const GUTTER = '1.25rem'
-export const SECTION_SPACE = '6rem'
-export const BLOCK_GAP = '3rem'
+// 4px 단위 간격, 키는 px 값 (SPACE[16] = 16px)
+export const SPACE = {
+  4: '0.25rem',
+  8: '0.5rem',
+  12: '0.75rem',
+  16: '1rem',
+  20: '1.25rem',
+  24: '1.5rem',
+  32: '2rem',
+  48: '3rem',
+  64: '4rem',
+  96: '6rem',
+} as const
+
+export const GUTTER = SPACE[20]
+export const SECTION_SPACE = SPACE[96]
+export const BLOCK_GAP = SPACE[48]
 export const CONTENT_MAX = '48rem'
 export const WIDE_MAX = '64rem'
 export const CARD_RADIUS = '1.5rem'
-export const CARD_SHADOW = `0 0.75rem 2rem ${vars.palette.greyOpacity200}`
+export const CARD_SHADOW = `0 ${SPACE[12]} ${SPACE[32]} ${vars.palette.greyOpacity200}`
+export const HAIRLINE = '1px'
 
 // 히어로 목업이 다음 섹션으로 겹쳐 내려오는 길이, 다음 섹션 위쪽 여백에 같은 값을 더함
-export const PHONE_OVERLAP = '4rem'
+export const PHONE_OVERLAP = SPACE[64]
 
 const ENTER_DURATION = '0.8s'
 
 const fadeUp = keyframes({
-  from: { opacity: 0, transform: 'translateY(1.5rem)' },
+  from: { opacity: 0, transform: `translateY(${SPACE[24]})` },
   to: { opacity: 1, transform: 'none' },
 })
 
@@ -48,7 +63,7 @@ export const line = style({ display: 'block' })
 export const accentLine = style([
   line,
   {
-    backgroundImage: `linear-gradient(90deg, ${vars.palette.orange900}, ${vars.palette.orange800})`,
+    backgroundImage: `linear-gradient(to right, ${vars.palette.orange900}, ${vars.palette.orange800})`,
     backgroundClip: 'text',
     WebkitBackgroundClip: 'text',
     color: 'transparent',
