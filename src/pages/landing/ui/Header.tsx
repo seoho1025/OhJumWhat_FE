@@ -1,7 +1,7 @@
 import { GOOGLE_LOGIN_PATH } from '../../../shared/config'
 import { buttonStyle } from '../../../shared/ui'
 import * as css from './header.css.ts'
-import { floatingShadow, pill, secondaryButton } from './landing.css.ts'
+import { pill } from './landing.css.ts'
 
 // 각 메뉴는 같은 페이지의 섹션으로 이동 (id는 각 섹션 컴포넌트)
 const NAV_ITEMS = [
@@ -29,10 +29,10 @@ export function Header() {
           </ul>
         </nav>
         <div className={css.actions}>
-          <a href={GOOGLE_LOGIN_PATH} className={`${buttonStyle({ size: 'medium' })} ${pill} ${secondaryButton}`}>
+          <a href={GOOGLE_LOGIN_PATH} className={`${buttonStyle({ size: 'small' })} ${pill} ${css.loginButton}`}>
             로그인
           </a>
-          <a href={GOOGLE_LOGIN_PATH} className={`${buttonStyle({ size: 'medium' })} ${pill} ${floatingShadow}`}>
+          <a href={GOOGLE_LOGIN_PATH} className={`${buttonStyle({ size: 'small' })} ${pill}`}>
             체험해보기
           </a>
         </div>
