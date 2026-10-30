@@ -10,6 +10,7 @@ export const button = recipe({
         cursor: 'default', //cursor: default 일 경우 마우스 기본 포인터로 사용할 수 있음
         fontFamily: 'inherit', //직접 지정한 텍스트 폰트로 작성될 수 있도록 폰트 지정
         fontWeight: vars.weight.semibold,
+        textDecoration: 'none', // <a>에 buttonStyle을 쓸 때 밑줄 제거
         selectors: { // 상태에 따른 스타일
             '&:disabled': { // 비활성화 한 상태이면 흐리게 하고 금지 커서 "&"표시는 자기 자신을 가르킴
                 opacity: 0.4,
