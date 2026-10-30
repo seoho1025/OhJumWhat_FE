@@ -2,7 +2,6 @@ import { useInView } from '../lib/useInView.ts'
 import { inView, line, reveal, section, sectionTitle } from './landing.css.ts'
 import * as css from './stepSection.css.ts'
 
-// 카드가 쌓이는 높이는 nth-child 순서라 네 개에 맞춰져 있음 (stepSection.css.ts)
 const STEPS = [
   { title: ['팀을 만들고', '동료를 초대하세요'], description: '초대 링크 하나로 같은 팀이 돼요.' },
   { title: ['먹고 싶은 메뉴를', '올리세요'], description: '근처 식당을 찾아 메뉴에 연결할 수 있어요.' },

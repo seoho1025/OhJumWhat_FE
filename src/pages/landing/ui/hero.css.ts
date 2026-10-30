@@ -1,24 +1,16 @@
-import { keyframes, style } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
 import { vars } from '../../../shared/ui'
 import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, enterAnimation, GUTTER, PHONE_OVERLAP, SPACE } from './landing.css.ts'
 
 // 문구 → 버튼 → 목업 순서로 떠오름
 const BUTTONS_ENTER_DELAY = '0.15s'
 const PHONE_ENTER_DELAY = '0.3s'
-// 목업이 제자리에서 천천히 위아래로 떠 있음
-const FLOAT_DURATION = '5s'
-const FLOAT_DISTANCE = SPACE[12]
 // 휴대폰 목업: 데스크톱 최대 폭, 좁은 화면에서는 화면 폭의 70%
 const PHONE_WIDTH = 'min(16rem, 70vw)'
 const PHONE_RATIO = '9 / 19.5'
 const PHONE_RADIUS = '2.5rem'
 const PHONE_BEZEL = SPACE[8]
 const HERO_TOP_SPACE = SPACE[64]
-
-const float = keyframes({
-  '0%, 100%': { transform: 'translateY(0)' },
-  '50%': { transform: `translateY(-${FLOAT_DISTANCE})` },
-})
 
 export const hero = style({
   position: 'relative',
@@ -29,8 +21,9 @@ export const hero = style({
   padding: `${HERO_TOP_SPACE} ${GUTTER} 0`,
   textAlign: 'center',
   // 아래쪽으로 갈수록 브랜드 색이 번짐 (D-033)
+  // 번짐은 아래 끝에 닿기 전에 사라지고, 끝 색은 orange50이라 다음 섹션 시작 색과 이어짐
   backgroundImage: [
-    `radial-gradient(70% 55% at 50% 100%, ${vars.palette.orange100}, transparent)`,
+    `radial-gradient(50% 30% at 50% 70%, ${vars.palette.orange100}, transparent)`,
     `linear-gradient(to bottom, ${vars.bg.base} 30%, ${vars.palette.orange50})`,
   ].join(', '),
 })
@@ -83,8 +76,4 @@ export const phone = style({
   borderRadius: PHONE_RADIUS,
   border: `${PHONE_BEZEL} solid ${vars.bg.inverse}`,
   backgroundImage: `linear-gradient(to bottom, ${vars.palette.orange50}, ${vars.bg.base})`,
-  animation: `${float} ${FLOAT_DURATION} ease-in-out infinite`,
-  '@media': {
-    '(prefers-reduced-motion: reduce)': { animation: 'none' },
-  },
 })

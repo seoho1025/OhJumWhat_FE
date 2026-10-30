@@ -1,14 +1,11 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, GUTTER, HAIRLINE, HEADER_HEIGHT, SECTION_SPACE, SPACE, WIDE_MAX } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, GUTTER, HAIRLINE, SECTION_SPACE, SPACE, WIDE_MAX } from './landing.css.ts'
 
 // 데스크톱 2단: 설명보다 화면 자리를 넓게
 const DESKTOP_COLUMNS = '1fr 1.4fr'
 const SCREEN_RATIO = '4 / 3'
 const SCREEN_RADIUS = SPACE[16]
-// 스크롤하면 카드가 헤더 아래에 차례로 붙어 쌓임, 뒤 카드가 STACK_STEP만큼 아래에 붙어 앞 카드 윗부분이 보임
-const STACK_TOP = `calc(${HEADER_HEIGHT} + ${SPACE[24]})`
-const STACK_STEP = SPACE[16]
 
 export const section = style({
   display: 'flex',
@@ -41,13 +38,6 @@ export const card = style({
   borderRadius: CARD_RADIUS,
   backgroundColor: vars.bg.layered,
   boxShadow: `inset 0 0 0 ${HAIRLINE} ${vars.border.subtle}`,
-  position: 'sticky',
-  top: STACK_TOP,
-  selectors: {
-    '&:nth-child(2)': { top: `calc(${STACK_TOP} + ${STACK_STEP})` },
-    '&:nth-child(3)': { top: `calc(${STACK_TOP} + ${STACK_STEP} * 2)` },
-    '&:nth-child(4)': { top: `calc(${STACK_TOP} + ${STACK_STEP} * 3)` },
-  },
   '@media': {
     [breakpoint.desktop]: { gridTemplateColumns: DESKTOP_COLUMNS, alignItems: 'center', padding: SPACE[48] },
   },
