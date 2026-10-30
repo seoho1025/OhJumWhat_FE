@@ -105,6 +105,7 @@
 - 랜딩 전용 예외 (D-033): 큰 제목 40/52(모바일)·64/80(데스크톱) px, 굵기 800 / 알약 버튼(radius 999) / 버튼 아래 브랜드색 그림자 / 스크롤 등장(화면을 벗어나면 초기화돼 다시 들어올 때 반복)·카드 펼침·단계 카드 각자 떠오름 (D-034) 
   - 움직임은 모두 prefers-reduced-motion이면 끔, 앱 화면에는 적용 금지 
   - 한 화면씩 넘김(scroll-snap)은 랜딩에만, 고정 요소에 backdrop-filter 금지(스크롤 버벅임) (D-039) 
+  - 유리 카드(반투명 + backdrop-filter)는 랜딩의 움직이는 카드에만, 뒤에 색(빛)이 있어야 효과가 보임 (D-041) 
 
 ## 드롭다운, 선택 
 - Menu: Menu.Trigger(트리거 + dropdown) → Menu.Dropdown(header) → Menu.DropdownItem(left, right) 
