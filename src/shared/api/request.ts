@@ -78,11 +78,16 @@ async function readErrorMessage(res: Response): Promise<string> {
   }
   try {
     const data: unknown = await res.json()
-    if (data && typeof data === 'object' && 'message' in data && typeof data.message === 'string') {
+    if (hasMessage(data)) {
       return data.message
     }
   } catch {
     // 본문이 JSON이 아니면 기본 문구
   }
   return FALLBACK_MESSAGE
+}
+
+// 백엔드 오류 본문 {"message": "..."} 인지 확인 (Spring 기본 형식에는 message가 없음)
+function hasMessage(data: unknown): data is { message: string } {
+  return typeof data === 'object' && data !== null && 'message' in data && typeof data.message === 'string'
 }
