@@ -18,7 +18,8 @@
 - 의미 토큰(배경): base #FFFFFF, grey = grey100, layered #FFFFFF, floated #FFFFFF 
 - 브랜드: primary = orange800(#ed6700), onPrimary = 흰색 (D-019) → Button color primary가 이 색을 씀 
 - 토큰 파일: src/shared/ui/theme.css.ts 
-- 텍스트, 테두리 의미 토큰은 TDS 문서에 없어 원색에서 정의 (theme.css.ts에서 결정 후 여기에 기록) 
+- 텍스트 의미 토큰 (D-027): text.primary = grey900(흰 배경 16.6:1), text.secondary = grey600(4.6:1), text.inverse = 흰색, text.inverseSecondary = grey400(grey900 배경 8.3:1) 
+- 테두리 의미 토큰은 미정 
 - 컴포넌트는 의미 토큰 우선, 원색 직접 사용은 Badge처럼 색 자체가 의미인 경우만 
 
 ## 타이포그래피 (TDS Typography) 
@@ -51,6 +52,7 @@
 - size: small / medium / large / xlarge (기본 xlarge) 
 - display: inline / block / full 
 - loading: 폭 유지 + 스피너 + aria-busy / disabled: 투명도로 표시 
+- 커서는 기본 화살표(default), 페이지 이동은 <a className={buttonStyle()}> (D-028) 
 
 | 크기 | 최소 높이 | 최소 폭 | padding | 둥글기 | 글자 | 로더(크기/간격) |
 |---|---|---|---|---|---|---|
@@ -70,6 +72,7 @@
 ## 둥글기 (radius) 
 - TDS에는 전역 radius 단계가 없고 컴포넌트마다 값을 가짐 → 프로젝트도 컴포넌트별 토큰으로 관리 
 - 확인된 값: Button xlarge 16 / Button 작은 크기 10 / NumericSpinner 배경 16, 숫자 14 
+- 간격 토큰 없음: 랜딩은 landing.css.ts 안의 상수로 임시 사용 (D-027), 간격·카드 둥글기 토큰을 정하면 교체 
 - 문단 안 링크, 배지 둥글기는 타이포그래피 단계에 묶여 있음 (t6이면 t6용 값) → 값 미확인 
 - 카드, 모달, 입력창 둥글기는 미확인 → 정하면 여기에 추가 
 
@@ -86,6 +89,7 @@
   - 용도: 제목 글자색, 히어로·섹션 배경 빛 번짐, 카드 배경 
   - 색: palette의 orange 계열(50~900)과 투명, 흰색만 / 다른 색상군 섞기 금지 
   - 앱 화면(로그인 이후)에는 적용 금지 
+  - 글자 그라데이션은 orange800~900만 (흰 배경 3.2~3.7:1, 큰 글자 기준 3:1 이상) 
 
 ## 드롭다운, 선택 
 - Menu: Menu.Trigger(트리거 + dropdown) → Menu.Dropdown(header) → Menu.DropdownItem(left, right) 

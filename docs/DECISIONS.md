@@ -164,3 +164,24 @@
 - 이유: 랜딩은 첫인상이 중요, 색을 브랜드 계열로 묶어 "임의 색 조합 금지" 취지는 유지, 앱 화면 톤은 그대로
 - 대안: 단색 유지(큰 글자, 여백, 그림자로 구성), 여러 색상군 그라데이션(참고 사이트처럼 보라·분홍)
 - 함께 정함: 1차는 섹션 구조(히어로, 카드, 단계, 마지막 CTA, 푸터)와 에셋 자리(aspect-ratio 고정)까지, 에셋과 스크롤 연출은 2차
+
+## D-026 pages/landing 슬라이스 (2026-10-30)
+- 분류: pages, 랜딩은 이 화면에서만 쓰는 섹션 조합이라 재사용 대상이 아님 (fsd.md "애매하면 pages")
+- 구성: ui(섹션 컴포넌트, landing.css.ts), config(문구), lib(로그인 오류 문구 선택 + 테스트)
+- 라우트: / 와 /login 모두 LandingPage (D-024)
+- 대안: widgets/landing-*로 섹션 분리 (조합하는 feature·entity가 없어 widgets 기준에 맞지 않음)
+- 남은 것: landing.html 진입점, 로그인 상태 분기(entities/user)
+
+## D-027 텍스트 의미 토큰 추가, 간격·둥글기는 임시 상수 (2026-10-30)
+- 결정: theme.css.ts에 text.primary(grey900), secondary(grey600), inverse(흰색), inverseSecondary(grey400)
+- 간격, 카드 둥글기, 그림자: 토큰이 없어 landing.css.ts 안의 상수로만 사용 (shortcut 주석)
+- 글자 그라데이션은 orange800~900만 (큰 글자 3:1 이상), 제목 크기는 t1(30px)이 최대라 데스크톱에서도 t1
+- 이유: design.md가 텍스트 토큰을 "원색에서 정의"하도록 예정, 대비를 계산해 AA(본문 4.5:1) 통과 값만 사용, 간격 체계는 앱 화면 기준으로 정해야 해서 랜딩에서 먼저 확정하지 않음
+- 대안: 원색 직접 사용, 간격 토큰을 지금 정의, 랜딩 전용 큰 제목 크기 추가
+- 확인 필요: 랜딩 제목을 t1보다 크게 할지 (TDS 문서에 없는 값)
+
+## D-028 링크를 버튼 모양으로: buttonStyle 공개 (2026-10-30)
+- 맥락: 구글 로그인은 페이지 이동이라 <a>가 맞음, Button은 <button>만 렌더
+- 결정: shared/ui에서 recipe를 buttonStyle로 내보내 <a className={buttonStyle()}>로 사용, button base에 textDecoration none
+- 이유: 링크 의미(새 탭 열기, 스크린 리더 "링크")를 유지하면서 스타일은 한 곳에서 관리, 코드가 가장 적음
+- 대안: Button에 href 또는 as prop 추가, onClick으로 location 이동(링크 의미 상실)
