@@ -9,6 +9,13 @@ globalFontFace(FONT_FAMILY, {
   fontDisplay: 'swap',
 })
 
+// 헤더 메뉴(#features 등)로 이동할 때 부드럽게 스크롤, 움직임 줄이기 설정이면 바로 이동
+globalStyle('html', {
+  '@media': {
+    '(prefers-reduced-motion: no-preference)': { scrollBehavior: 'smooth' },
+  },
+})
+
 globalStyle('body', {
   margin: 0,
   backgroundColor: vars.bg.base,

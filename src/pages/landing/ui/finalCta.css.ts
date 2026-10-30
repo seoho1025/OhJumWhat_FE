@@ -13,4 +13,11 @@ export const section = style({
   textAlign: 'center',
 })
 
+export const content = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: SPACE[32],
+})
+
 export const title = style([sectionTitle, { color: vars.text.inverse }])

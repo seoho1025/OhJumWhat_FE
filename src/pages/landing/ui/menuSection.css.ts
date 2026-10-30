@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, GUTTER, HAIRLINE, PHONE_OVERLAP, SECTION_SPACE, SPACE } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, GUTTER, HAIRLINE, PHONE_OVERLAP, REVEAL_DURATION, REVEAL_EASE, SECTION_SPACE, SPACE, STAGGER } from './landing.css.ts'
 
 // 메뉴 카드: 모바일은 다섯 장이 390px 화면에 들어가는 크기, 겹침은 카드끼리 살짝 포개지는 정도
 const CARD_WIDTH = '4.75rem'
@@ -16,6 +16,8 @@ const TILT_OUTER = '12deg'
 const TILT_INNER = '6deg'
 const OUTER_DROP = SPACE[24]
 const CENTER_LIFT = SPACE[12]
+// 펼쳐지기 전: 가운데에 겹쳐 아래에 숨어 있음
+const STACKED = `translateY(${SPACE[48]}) scale(0.9)`
 
 export const section = style({
   display: 'flex',
@@ -23,8 +25,15 @@ export const section = style({
   alignItems: 'center',
   gap: BLOCK_GAP,
   padding: `calc(${SECTION_SPACE} + ${PHONE_OVERLAP}) ${GUTTER} ${SECTION_SPACE}`,
-  backgroundImage: `radial-gradient(50% 50% at 50% 70%, ${vars.palette.orange50}, transparent)`,
+  // 히어로 아래쪽 색(orange50)에서 이어 받아 흰색으로 풀려서 섹션 경계선이 생기지 않음
+  backgroundImage: [
+    `linear-gradient(to bottom, ${vars.palette.orange50}, transparent 40%)`,
+    `radial-gradient(50% 50% at 50% 70%, ${vars.palette.orange50}, transparent)`,
+  ].join(', '),
 })
+
+// 화면에 들어오면 붙는 클래스, 카드가 부채꼴로 펼쳐짐
+export const cardsInView = style({})
 
 export const cards = style({
   display: 'flex',
@@ -47,15 +56,21 @@ export const card = style({
   borderRadius: CARD_RADIUS,
   border: `${HAIRLINE} solid ${vars.border.subtle}`,
   backgroundImage: `linear-gradient(${CARD_SHEEN_ANGLE}, ${vars.bg.base}, ${vars.palette.orange50})`,
+  opacity: 0,
+  transform: STACKED,
+  transition: `opacity ${REVEAL_DURATION} ${REVEAL_EASE}, transform ${REVEAL_DURATION} ${REVEAL_EASE}`,
   selectors: {
-    '&:nth-child(1)': { transform: `rotate(-${TILT_OUTER}) translateY(${OUTER_DROP})` },
-    '&:nth-child(2)': { transform: `rotate(-${TILT_INNER})` },
-    '&:nth-child(3)': { transform: `translateY(-${CENTER_LIFT})` },
-    '&:nth-child(4)': { transform: `rotate(${TILT_INNER})` },
-    '&:nth-child(5)': { transform: `rotate(${TILT_OUTER}) translateY(${OUTER_DROP})` },
+    // 가운데 카드부터 바깥으로 차례로 펼쳐짐
+    [`${cardsInView} &`]: { opacity: 1 },
+    [`${cardsInView} &:nth-child(1)`]: { transform: `rotate(-${TILT_OUTER}) translateY(${OUTER_DROP})`, transitionDelay: `calc(${STAGGER} * 2)` },
+    [`${cardsInView} &:nth-child(2)`]: { transform: `rotate(-${TILT_INNER})`, transitionDelay: STAGGER },
+    [`${cardsInView} &:nth-child(3)`]: { transform: `translateY(-${CENTER_LIFT})` },
+    [`${cardsInView} &:nth-child(4)`]: { transform: `rotate(${TILT_INNER})`, transitionDelay: STAGGER },
+    [`${cardsInView} &:nth-child(5)`]: { transform: `rotate(${TILT_OUTER}) translateY(${OUTER_DROP})`, transitionDelay: `calc(${STAGGER} * 2)` },
   },
   '@media': {
     [breakpoint.desktop]: { width: CARD_WIDTH_DESKTOP, marginInline: CARD_OVERLAP_DESKTOP, padding: SPACE[20] },
+    '(prefers-reduced-motion: reduce)': { transition: 'none' },
   },
 })
 
