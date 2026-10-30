@@ -20,4 +20,8 @@ export const content = style({
   gap: SPACE[32],
 })
 
+export const cheer = style({
+  width: 'min(14rem, 50vw)',
+})
+
 export const title = style([sectionTitle, { color: vars.text.inverse }])

@@ -1,15 +1,11 @@
 import { style } from '@vanilla-extract/css'
 import { vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, enterAnimation, GUTTER, PHONE_OVERLAP, SPACE } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, enterAnimation, GUTTER, HERO_OVERLAP, SPACE } from './landing.css.ts'
 
-// 문구 → 버튼 → 목업 순서로 떠오름
+// 문구 → 버튼 → 캐릭터 순서로 떠오름
 const BUTTONS_ENTER_DELAY = '0.15s'
-const PHONE_ENTER_DELAY = '0.3s'
-// 휴대폰 목업: 데스크톱 최대 폭, 좁은 화면에서는 화면 폭의 70%
-const PHONE_WIDTH = 'min(16rem, 70vw)'
-const PHONE_RATIO = '9 / 19.5'
-const PHONE_RADIUS = '2.5rem'
-const PHONE_BEZEL = SPACE[8]
+const CHARACTER_ENTER_DELAY = '0.3s'
+const CHARACTER_WIDTH = 'min(26rem, 80vw)'
 const HERO_TOP_SPACE = SPACE[64]
 
 export const hero = style({
@@ -39,9 +35,9 @@ export const content = style({
 
 export const description = style({
   margin: 0,
-  fontSize: vars.font.t6.size,
-  lineHeight: vars.font.t6.lineHeight,
-  color: vars.text.secondary,
+  fontSize: vars.font.st11.size,
+  lineHeight: vars.font.st11.lineHeight,
+  color: vars.text.tertiary,
 })
 
 export const loginError = style({
@@ -63,17 +59,10 @@ export const buttons = style({
   animationDelay: BUTTONS_ENTER_DELAY,
 })
 
-// 에셋이 들어올 자리, 비율을 고정해 교체해도 레이아웃이 움직이지 않음
-export const phoneSlot = style({
-  width: PHONE_WIDTH,
-  marginBottom: `calc(-1 * ${PHONE_OVERLAP})`,
+// 대표 캐릭터: 데스크톱 최대 폭, 좁은 화면에서는 화면 폭의 80%
+export const heroCharacter = style({
+  width: CHARACTER_WIDTH,
+  marginBottom: `calc(-1 * ${HERO_OVERLAP})`,
   ...enterAnimation,
-  animationDelay: PHONE_ENTER_DELAY,
-})
-
-export const phone = style({
-  aspectRatio: PHONE_RATIO,
-  borderRadius: PHONE_RADIUS,
-  border: `${PHONE_BEZEL} solid ${vars.bg.inverse}`,
-  backgroundImage: `linear-gradient(to bottom, ${vars.palette.orange50}, ${vars.bg.base})`,
+  animationDelay: CHARACTER_ENTER_DELAY,
 })

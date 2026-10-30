@@ -16,6 +16,11 @@ export const section = style({
   padding: `${SECTION_SPACE} ${GUTTER}`,
 })
 
+export const guide = style({
+  width: SPACE[96],
+  marginBottom: `-${SPACE[24]}`,
+})
+
 export const list = style({
   width: '100%',
   maxWidth: CONTENT_MAX,

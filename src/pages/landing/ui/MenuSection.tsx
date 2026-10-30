@@ -1,5 +1,6 @@
+import thinking from './characters/thinking.webp'
 import { useInView } from '../lib/useInView.ts'
-import { accentLine, inView, line, reveal, section, sectionTitle } from './landing.css.ts'
+import { accentLine, character, inView, line, reveal, section, sectionTitle } from './landing.css.ts'
 import * as css from './menuSection.css.ts'
 
 // 카드 기울기는 nth-child 순서라 다섯 개에 맞춰져 있음 (menuSection.css.ts)
@@ -17,6 +18,7 @@ export function MenuSection() {
 
   return (
     <section id="features" className={`${section} ${css.section}`} aria-labelledby="menu-title">
+      <img src={thinking} alt="" width={560} height={688} loading="lazy" className={`${character} ${css.thinking} ${reveal} ${titleInView ? inView : ''}`} />
       <h2 id="menu-title" ref={titleRef} className={`${sectionTitle} ${reveal} ${titleInView ? inView : ''}`}>
         <span className={line}>어떤 메뉴든</span>
         <span className={accentLine}>한 번에 투표로</span>

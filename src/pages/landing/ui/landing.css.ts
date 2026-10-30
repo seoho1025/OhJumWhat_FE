@@ -42,8 +42,8 @@ export const REVEAL_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
 export const STAGGER = '0.12s'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
 
-// 히어로 목업이 다음 섹션으로 겹쳐 내려오는 길이, 다음 섹션 위쪽 여백에 같은 값을 더함
-export const PHONE_OVERLAP = SPACE[64]
+// 히어로 캐릭터가 다음 섹션으로 겹쳐 내려오는 길이, 다음 섹션 위쪽 여백에 같은 값을 더함
+export const HERO_OVERLAP = SPACE[64]
 
 const ENTER_DURATION = '0.8s'
 
@@ -93,6 +93,12 @@ export const secondaryButton = style({
   backgroundColor: vars.bg.base,
   color: vars.text.primary,
   boxShadow: `inset 0 0 0 ${HAIRLINE} ${vars.border.subtle}, 0 ${SPACE[4]} ${SPACE[16]} ${vars.palette.greyOpacity100}`,
+})
+
+// 캐릭터 이미지: 폭만 정하고 높이는 원본 비율(width·height 속성)로
+export const character = style({
+  display: 'block',
+  height: 'auto',
 })
 
 export const displayTitle = style({

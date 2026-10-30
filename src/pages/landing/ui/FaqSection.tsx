@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
+import guide from './characters/guide.webp'
 import { useInView } from '../lib/useInView.ts'
 import * as css from './faqSection.css.ts'
-import { inView, reveal, section, sectionTitle } from './landing.css.ts'
+import { character, inView, reveal, section, sectionTitle } from './landing.css.ts'
 
 const FAQS = [
   { question: '어떻게 시작하나요?', answer: '구글 계정으로 로그인한 뒤 팀을 만들면 바로 첫 투표를 열 수 있어요.' },
@@ -59,6 +60,7 @@ export function FaqSection() {
 
   return (
     <section id="faq" className={`${section} ${css.section}`} aria-labelledby="faq-title">
+      <img src={guide} alt="" width={440} height={434} loading="lazy" className={`${character} ${css.guide} ${reveal} ${titleInView ? inView : ''}`} />
       <h2 id="faq-title" ref={titleRef} className={`${sectionTitle} ${reveal} ${titleInView ? inView : ''}`}>
         자주 묻는 질문
       </h2>

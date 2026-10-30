@@ -70,10 +70,23 @@ export const description = style({
   color: vars.text.secondary,
 })
 
-// 앱 화면이 들어올 자리 (D-024 2차)
+// 단계별 캐릭터 자리 (D-037)
 export const screenSlot = style({
+  position: 'relative',
   aspectRatio: SCREEN_RATIO,
   borderRadius: SCREEN_RADIUS,
   // 랜딩 그라데이션은 orange 계열, 투명, 흰색만 (D-025)
   backgroundImage: `linear-gradient(to bottom right, ${vars.palette.orange50}, ${vars.bg.base})`,
+})
+
+// 캐릭터마다 가로세로 비율이 달라, 칸(4:3) 안쪽 여백 안에서 잘리지 않게 맞춤
+const SLOT_PADDING = SPACE[24]
+
+export const stepCharacter = style({
+  position: 'absolute',
+  top: SLOT_PADDING,
+  left: SLOT_PADDING,
+  width: `calc(100% - 2 * ${SLOT_PADDING})`,
+  height: `calc(100% - 2 * ${SLOT_PADDING})`,
+  objectFit: 'contain',
 })
