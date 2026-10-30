@@ -66,7 +66,7 @@ TDS Mobile 컴포넌트 카탈로그 (2026-10-29 문서 기준 요약, 원문 �
 ## 표시, 피드백 
 | 컴포넌트 | 핵심 props | 메모 |
 |---|---|---|
-| Badge | variant(fill/weak), size(xsmall~large), color(blue/teal/green/red/yellow/elephant) 모두 필수 | |
+| Badge | variant(fill/weak), size(xsmall~large), color(blue/teal/green/red/yellow/elephant) 모두 필수 | 크기·색 값은 원문에 없음 → 현업 기준으로 구현, 프로젝트 color primary 추가 (design.md Badge, D-038) |
 | Paragraph | typography(필수), display(block/inline), ellipsisAfterLines, textAlign, fontWeight, color | 하위 Text, 링크·배지 둥글기는 typography별 |
 | Post | H1(t2)·H2(t3)·H3(st8) 등 제목, Paragraph, Ul/Li, paddingBottom | 본문 글 구조 |
 | Bubble | background(blue=나/grey=상대, 필수), withTail(true) | 채팅 말풍선, 꼬리는 나 오른쪽·상대 왼쪽 |

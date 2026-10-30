@@ -104,6 +104,7 @@
   - 글자 그라데이션은 orange800~900만 (흰 배경 3.2~3.7:1, 큰 글자 기준 3:1 이상) 
 - 랜딩 전용 예외 (D-033): 큰 제목 40/52(모바일)·64/80(데스크톱) px, 굵기 800 / 알약 버튼(radius 999) / 버튼 아래 브랜드색 그림자 / 스크롤 등장(화면을 벗어나면 초기화돼 다시 들어올 때 반복)·카드 펼침·단계 카드 각자 떠오름 (D-034) 
   - 움직임은 모두 prefers-reduced-motion이면 끔, 앱 화면에는 적용 금지 
+  - 한 화면씩 넘김(scroll-snap)은 랜딩에만, 고정 요소에 backdrop-filter 금지(스크롤 버벅임) (D-039) 
 
 ## 드롭다운, 선택 
 - Menu: Menu.Trigger(트리거 + dropdown) → Menu.Dropdown(header) → Menu.DropdownItem(left, right) 
@@ -117,7 +118,11 @@
 - 웹에서 추가: 화살표 키 이동, ESC 닫기, 닫힌 뒤 트리거로 포커스 복귀, aria-expanded / aria-haspopup 
 
 ## 그 밖의 컴포넌트 
-- Badge: variant(fill/weak) / size(xsmall~large) / color(blue, teal, green, red, yellow, elephant) 모두 필수 
+- Badge: variant(fill/weak) / size(xsmall~large) / color(blue, teal, green, red, yellow, elephant) 모두 필수 (D-038) 
+  - 구현: src/shared/ui/badge, TDS는 값 미공개라 현업 기준: 높이 18/20/24/28, 글자 11/12/13/14, semibold, 완전히 둥근 모양(999px) 
+  - fill = 진한 배경(500, primary는 brand.primary) + 흰 글자 / weak = 연한 배경(50) + 진한 글자(700) 
+  - 프로젝트 추가 color: primary(브랜드 오렌지) / elephant는 회색 계열(grey600·100·700)로 대응 
+  - 한계: fill의 흰 글자는 작은 글자라 AA 미달(primary 3.2:1, yellow는 더 낮음) 
 - TextField: variant(box/line/big/hero) / label / help / hasError 
 - Modal, Dialog, Toast: 열림은 controlled (open + onClose) 
 - Tab: Tab.Item compound, size(large/small), role=tablist/tab 내장 
