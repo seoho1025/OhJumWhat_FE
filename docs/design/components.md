@@ -13,7 +13,7 @@ TDS Mobile 컴포넌트 카탈로그 (2026-10-29 문서 기준 요약, 원문 �
 ## 버튼, 액션 
 | 컴포넌트 | 핵심 props | 메모 |
 |---|---|---|
-| Button | color(primary/danger/light/dark), variant(fill/weak), size(small~xlarge), display(inline/block/full), loading, disabled, as(button/a) | 값은 design.md Button 표 |
+| Button | color(primary/danger/light/dark), variant(fill/weak), size(small~xlarge), display(inline/block/full), loading, disabled, 링크는 buttonStyle (D-028, as prop 없음) | 값은 design.md Button 표 |
 | TextButton | size(xsmall~xxlarge), variant(clear/arrow/underline), disabled | 글자 props 상속 |
 | IconButton | aria-label(필수), variant(clear/fill/border), name 또는 src, color, bgColor(greyOpacity100), iconSize(24) | 아이콘 출처는 프로젝트에서 결정 |
 | BottomCTA | Single(children) / Double(leftButton, rightButton), fixed, takeSpace, background(default/none), topAccessory, bottomAccessory, hideOnScroll, showAfterDelay | 아래 여백 max(safe-area, 20px), [웹] 데스크톱 배치 결정 |

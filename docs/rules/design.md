@@ -19,7 +19,9 @@
 - 브랜드: primary = orange800(#ed6700), onPrimary = 흰색 (D-019) → Button color primary가 이 색을 씀 
 - 토큰 파일: src/shared/ui/theme.css.ts 
 - 텍스트 의미 토큰 (D-027): text.primary = grey900(흰 배경 16.6:1), text.secondary = grey600(4.6:1), text.inverse = 흰색, text.inverseSecondary = grey400(grey900 배경 8.3:1) 
-- 테두리 의미 토큰은 미정 
+- 배경 추가 (D-030): bg.inverse = grey900(어두운 구역), brand.weak = orange50(연한 강조 배경, 글자는 text.primary) 
+- 테두리 의미 토큰 (D-030): border.subtle = grey200, border.inverse = grey800 (TDS Border 문서에 색 없음 → 원색에서 정의) 
+- 그림자: TDS 문서에 없음 → 쓰지 않고 배경 대비(bg.grey 위 bg.layered)와 border로 구분 (D-030) 
 - 컴포넌트는 의미 토큰 우선, 원색 직접 사용은 Badge처럼 색 자체가 의미인 경우만 
 
 ## 타이포그래피 (TDS Typography) 
@@ -53,14 +55,22 @@
 - display: inline / block / full 
 - loading: 폭 유지 + 스피너 + aria-busy / disabled: 투명도로 표시 
 - 커서는 기본 화살표(default), 페이지 이동은 <a className={buttonStyle()}> (D-028) 
+- 눌림(pressed): TDS처럼 버튼 위에 어두운 층(dim)을 겹침, 웹 hover는 같은 층을 더 옅게 (D-030) 
+- 상태 값 (D-031): 어두운 층 grey900, hover 8% / pressed 10% (Material 3 state layer 투명도), disabled 0.4 / focus 2px 
+- 크기 표의 높이·폭은 padding 포함 (box-sizing: border-box) 
+- 굵기: semibold (TDS 문서에 값 없음, 확인 필요) 
 
 | 크기 | 최소 높이 | 최소 폭 | padding | 둥글기 | 글자 | 로더(크기/간격) |
 |---|---|---|---|---|---|---|
-| xlarge | 56 | 96 | 15 28 | 16 | t5 | 8 / 7 |
-| (작은 크기, 이름 미확인) | 38 | 64 | 2 16 | 10 | t6 | 5 / 4 |
+| small | 32 | 48 | 0 12 | 8 | st11(14) | 미정 |
+| medium | 40 | 64 | 0 16 | 10 | t6(15) | 미정 |
+| large | 48 | 80 | 0 20 | 12 | st10(16) | 미정 |
+| xlarge | 56 | 96 | 15 28 | 16 | t5(17) | 8 / 7 |
 
-- 출처: TDS 문서 예시 화면의 렌더링 값 (작은 크기는 Result, Top 예시), medium·large는 미확인 
-- 색 조합 예: fill primary = blue500 + 흰 글자 / weak danger = red300 15% 배경 + red600 글자 / weak 회색 = greyOpacity100 배경 + grey700 글자 
+- 출처: xlarge는 TDS 문서 예시 화면의 렌더링 값, small~large는 TDS 미공개라 현업에서 흔한 8px 단계 높이(32/40/48/56)로 정함 (D-031) 
+- 참고: TDS 예시(Result, Top)의 작은 버튼 측정값 38 / 64 / 2·16 / r10 / t6은 크기 이름이 확인되지 않아 채택하지 않음 
+- 높이 44px 미만(small, medium)은 보이지 않는 ::before로 터치 영역을 44px까지 넓힘 
+- 색 조합 예: fill primary = brand.primary(orange800, D-019) + 흰 글자 / weak danger = red300 15% 배경 + red600 글자 / weak 회색 = greyOpacity100 배경 + grey700 글자 
 
 ## BottomCTA (TDS BottomCTA) 
 - Single(버튼 1개, children) / Double(leftButton, rightButton) 
@@ -72,9 +82,11 @@
 ## 둥글기 (radius) 
 - TDS에는 전역 radius 단계가 없고 컴포넌트마다 값을 가짐 → 프로젝트도 컴포넌트별 토큰으로 관리 
 - 확인된 값: Button xlarge 16 / Button 작은 크기 10 / NumericSpinner 배경 16, 숫자 14 
-- 간격 토큰 없음: 랜딩은 landing.css.ts 안의 상수로 임시 사용 (D-027), 간격·카드 둥글기 토큰을 정하면 교체 
+- 간격: TDS도 전역 간격 토큰 없이 컴포넌트마다 값(ListRow 8/12/16/24, 좌우 20/24, Border 24·16)을 가짐, 모두 4px 단위 
+  - 프로젝트도 전역 간격 토큰을 만들지 않고 컴포넌트·페이지 안에서 4px 단위 값 사용 (랜딩은 landing.css.ts SPACE) (D-030) 
 - 문단 안 링크, 배지 둥글기는 타이포그래피 단계에 묶여 있음 (t6이면 t6용 값) → 값 미확인 
-- 카드, 모달, 입력창 둥글기는 미확인 → 정하면 여기에 추가 
+- 카드형 묶음: 20 (TDS Border 문서 예시의 묶음 컨테이너 borderRadius 20) (D-030) 
+- 모달, 입력창 둥글기는 미확인 → 정하면 여기에 추가 
 
 ## 그라데이션 
 - TDS에서 그라데이션은 장식이 아니라 "내용이 배경으로 사라지는 경계"에만 사용 

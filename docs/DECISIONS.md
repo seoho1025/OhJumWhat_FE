@@ -129,8 +129,6 @@
 - 대안: docs/api/user.md·admin.md로 분리, 관리자도 필드까지 기록, 전체 필드 기록
 - 다시 볼 때: 관리자 화면 착수 시 명세를 다시 받아 관리자 부분 보강, 파일이 너무 길어지면 docs/api/admin.md로 분리
 
-
-
 ## D-022 API 호출: 상대 경로 + Vite 개발 프록시 (2026-10-29)
 - 맥락: 백엔드는 같은 출처만 허용(CORS 없음), 운영은 화면과 서버를 한 이미지로 배포
 - 결정: 코드에서는 /api 상대 경로만 사용, 개발 서버가 /api(WebSocket 포함), /oauth2, /login/oauth2, /logout을 API_PROXY_TARGET으로 프록시
@@ -195,3 +193,27 @@
 - 우선한 기준: 응집도(함께 바뀌는 문구와 마크업, 섹션과 스타일을 한곳에) > 문구만 모아 보는 편의
 - 대안: config에 문구 모으기 (문구 검토는 편하지만 섹션 하나를 고칠 때 파일 두 개를 오감)
 - 검증: 리팩터 전후 화면 캡처(1280, 390)가 픽셀 단위로 같음
+
+## D-030 남은 디자인 값을 TDS 방식에 맞춤 (2026-10-30)
+- 확인한 TDS 문서: Button(눌림은 dim 층, 값은 CSS 변수 이름만 공개), Colors(배경 4종만, 어두운 배경·테두리·그림자 없음), Border(선 색·두께 없음, padding24는 양쪽 24px)
+- 결정
+  - 그림자 없음: TDS 문서에 없고 화면이 배경 대비로 구분됨 → 랜딩 카드·목업 그림자 제거
+  - 카드형 묶음 둥글기 20px: TDS Border 예시의 묶음 컨테이너 값
+  - 토큰 추가(원색에서 정의): bg.inverse(grey900), brand.weak(orange50), border.subtle(grey200), border.inverse(grey800)
+  - Button 눌림·hover: TDS처럼 dim 층, 값은 임시(shortcut) / box-sizing border-box(TDS 크기는 padding 포함)
+  - 간격: TDS처럼 전역 토큰 없이 4px 단위 값을 컴포넌트·페이지 안에서 사용
+- 이유: TDS에 있는 것은 그대로, 없는 것은 TDS가 하는 방식(컴포넌트별 값, 배경 대비)을 따름
+- 대안: 그림자 유지(참고 사이트 느낌), 눌림을 scale(0.98)로, 전역 간격 토큰 정의
+- 확인 필요: dim 층 실제 값, Button 굵기, border.subtle을 grey100으로 할지(TDS 화면 측정 필요)
+- 함께 고친 버그: <a>에 buttonStyle을 쓰면 content-box라 높이 86px(TDS 56px) → border-box로 56px 확인
+
+## D-031 Button small~large 크기와 상태 층 값: 현업 공통 기준 (2026-10-30)
+- 맥락: TDS는 small·medium·large 값과 눌림 투명도를 공개하지 않음 (D-030), 사용자 지시로 현업에서 흔한 기준 사용
+- 결정
+  - 높이 8px 단계: small 32 / medium 40 / large 48 / xlarge 56(TDS 값 유지), 둥글기 8 / 10 / 12 / 16, 글자 14 / 15 / 16 / 17
+  - 44px 미만 크기는 ::before로 터치 영역 44px 확보 (design.md 접근성 규칙 유지)
+  - 상태 층: grey900 위에 hover 8%, pressed 10% (Material 3 state layer 투명도)
+- 이유: 8px 단계 높이는 여러 디자인 시스템이 공통으로 쓰는 값이라 예측 쉬움, 상태 층 투명도는 공개된 기준이 있는 Material 3를 따름
+- D-017(TDS 값 그대로)과의 관계: TDS에 값이 있는 xlarge는 그대로, 없는 값만 현업 기준으로 채움
+- 대안: TDS 예시 측정값 38을 medium으로 추정, 상태 층을 흰색(on-color, Material 방식 그대로)으로
+- 검증: Chrome에서 네 크기 렌더링 측정 (높이 32/40/48/56, 터치 영역 44/44/48/56)
