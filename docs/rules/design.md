@@ -18,7 +18,7 @@
 - 의미 토큰(배경): base #FFFFFF, grey = grey100, layered #FFFFFF, floated #FFFFFF 
 - 브랜드: primary = orange800(#ed6700), onPrimary = 흰색 (D-019) → Button color primary가 이 색을 씀 
 - 토큰 파일: src/shared/ui/theme.css.ts 
-- 텍스트 의미 토큰 (D-027): text.primary = grey900(흰 배경 16.6:1), text.secondary = grey600(4.6:1), text.inverse = 흰색, text.inverseSecondary = grey400(grey900 배경 8.3:1) 
+- 텍스트 의미 토큰 (D-027): text.primary = grey900(흰 배경 16.6:1), text.secondary = grey600(4.6:1), text.inverse = 흰색, text.inverseSecondary = grey400(grey900 배경 8.3:1), text.tertiary = grey500(흰 배경 3.0:1, AA 미달이라 보조 문구에만, D-036) 
 - 배경 추가 (D-030): bg.inverse = grey900(어두운 구역), brand.weak = orange50(연한 강조 배경, 글자는 text.primary) 
 - 테두리 의미 토큰 (D-030): border.subtle = grey200, border.inverse = grey800 (TDS Border 문서에 색 없음 → 원색에서 정의) 
 - 그림자: TDS 문서에 없음 → 쓰지 않고 배경 대비(bg.grey 위 bg.layered)와 border로 구분 (D-030) 
@@ -58,7 +58,7 @@
 - 눌림(pressed): TDS처럼 버튼 위에 어두운 층(dim)을 겹침, 웹 hover는 같은 층을 더 옅게 (D-030) 
 - 상태 값 (D-031): 어두운 층 grey900, hover 8% / pressed 10% (Material 3 state layer 투명도), disabled 0.4 / focus 2px 
 - 크기 표의 높이·폭은 padding 포함 (box-sizing: border-box) 
-- 굵기: semibold (TDS 문서에 값 없음, 확인 필요) 
+- 굵기: regular 400 (사용자 지시, D-035) 
 
 | 크기 | 최소 높이 | 최소 폭 | padding | 둥글기 | 글자 | 로더(크기/간격) |
 |---|---|---|---|---|---|---|
@@ -144,6 +144,13 @@
 - 아이콘만 있는 버튼은 aria-label 필수 
 - 모달은 네이티브 dialog (ESC 닫기, 포커스 복귀) 
 - 터치 영역 최소 44px 
+
+## 이미지 에셋 (D-037) 
+- 위치: 쓰는 슬라이스의 ui 세그먼트 안 (예: pages/landing/ui/characters), assets 같은 이름은 FSD 검사(segments-by-purpose)에 걸림 
+- 형식: 투명 배경 WebP, 원본에서 빈 여백을 잘라내고 화면 표시 폭의 2배로 줄임, 한 장 50KB 안팎 
+- img에 width·height(원본 크기)를 넣어 불러오기 전에 자리를 잡음, 첫 화면 이미지만 fetchPriority=high, 나머지 loading=lazy 
+- 문구가 내용을 전하는 장식 이미지는 alt 비움, 단계 설명처럼 내용이 있는 이미지는 alt 작성 
+- 원본은 레포에 넣지 않음 
 
 ## vanilla-extract 작성 규칙 
 - 스타일은 .css.ts 파일에만, 컴포넌트 옆에 둠 
