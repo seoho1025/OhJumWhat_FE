@@ -57,7 +57,7 @@ TDS Mobile 컴포넌트 카탈로그 (2026-10-29 문서 기준 요약, 원문 �
 | BoardRow | title, prefix, icon, children, initialOpened, isOpened + onOpen/onClose | 아코디언, Text 기본 t6, Prefix 기본 st8·blue500 |
 | TableRow | left, right, align(left/space-between, 필수), leftRatio | |
 | GridList | column(1/2/3, 기본 3), Item(image, children) | |
-| Border | variant(full/padding24/height16), height | 항목 구분 full·padding24, 구간 구분 height16 |
+| Border | variant(full 기본/padding24/height16), height(height16일 때만, 높이 직접 지정) | 항목 구분: full(전체 너비) 또는 padding24(여백 24, 원문이 "양쪽"과 "왼쪽"으로 다르게 설명 → 구현 전 렌더링 확인), 구간 구분: height16(높이 16 띠). 선 두께·색은 원문에 없음 → 테두리 의미 토큰 정할 때 결정 |
 | Top | title, subtitleTop, subtitleBottom, upper, lower, right, upperGap(24), lowerGap(24) | 화면 상단 제목 영역, LowerButton 기본 small |
 | Tab | Item(selected, redBean), onChange(index), size(large/small), fluid, itemGap | |
 | Stepper | play, delay, staggerDelay(0.1), Row(left, center, right, hideLine) | 단계 안내 |
