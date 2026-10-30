@@ -2,14 +2,13 @@ import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
 import { GUTTER, HAIRLINE, HEADER_HEIGHT, SPACE } from './landing.css.ts'
 
-// 스크롤해도 위에 붙어 있고, 뒤 내용이 살짝 비치는 흰 배경 + 약한 블러
-const HEADER_BG = `color-mix(in srgb, ${vars.bg.base} 85%, transparent)`
-const HEADER_BLUR = 'blur(4px)'
+// 스크롤해도 위에 붙어 있고, 뒤 내용이 아주 살짝 비치는 흰 배경
+// 블러(backdrop-filter)는 스크롤할 때마다 뒤 화면을 다시 그려 버벅임의 원인이라 쓰지 않음 (D-039)
+const HEADER_BG = `color-mix(in srgb, ${vars.bg.base} 92%, transparent)`
 // 구분선 대신 아주 옅은 그림자로 본문과 나눔
 const HEADER_SHADOW = `0 1px ${SPACE[12]} ${vars.palette.greyOpacity100}`
-// 로고와 버튼을 화면 양끝 가까이 두기 위해 본문(1024)보다 넓게, 데스크톱 좌우 여백 48
-const HEADER_MAX = '90rem'
-const HEADER_GUTTER_DESKTOP = SPACE[48]
+// 로고와 로그인을 화면 양끝 가까이: 폭 제한 없이 데스크톱 좌우 여백 24
+const HEADER_GUTTER_DESKTOP = SPACE[24]
 
 export const header = style({
   position: 'sticky',
@@ -17,8 +16,6 @@ export const header = style({
   zIndex: 1,
   height: HEADER_HEIGHT,
   backgroundColor: HEADER_BG,
-  backdropFilter: HEADER_BLUR,
-  WebkitBackdropFilter: HEADER_BLUR,
   boxShadow: HEADER_SHADOW,
 })
 
@@ -33,13 +30,14 @@ export const inner = style({
   alignItems: 'center',
   gap: SPACE[16],
   height: '100%',
-  maxWidth: HEADER_MAX,
-  margin: '0 auto',
   padding: `0 ${GUTTER}`,
   boxSizing: 'border-box',
 })
 
 export const logo = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: SPACE[8],
   fontSize: vars.font.t4.size,
   lineHeight: vars.font.t4.lineHeight,
   fontWeight: vars.weight.bold,
@@ -89,4 +87,10 @@ export const loginButton = style({
   backgroundColor: 'transparent',
   color: vars.brand.primary,
   boxShadow: `inset 0 0 0 ${HAIRLINE} ${vars.brand.primary}`,
+})
+
+// 로고 옆 캐릭터, 글자 높이보다 조금 크게
+export const logoIcon = style({
+  width: SPACE[32],
+  height: SPACE[32],
 })

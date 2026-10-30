@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, GUTTER, HAIRLINE, SECTION_SPACE, SPACE, WIDE_MAX } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, GUTTER, SECTION_SPACE, SPACE, WIDE_MAX } from './landing.css.ts'
 
 // 데스크톱 2단: 설명보다 화면 자리를 넓게
 const DESKTOP_COLUMNS = '1fr 1.4fr'
@@ -37,7 +37,6 @@ export const card = style({
   padding: `${SPACE[32]} ${SPACE[24]}`,
   borderRadius: CARD_RADIUS,
   backgroundColor: vars.bg.layered,
-  boxShadow: `inset 0 0 0 ${HAIRLINE} ${vars.border.subtle}`,
   '@media': {
     [breakpoint.desktop]: { gridTemplateColumns: DESKTOP_COLUMNS, alignItems: 'center', padding: SPACE[48] },
   },
@@ -49,11 +48,9 @@ export const text = style({
   gap: SPACE[12],
 })
 
-export const label = style({
-  fontSize: vars.font.t7.size,
-  lineHeight: vars.font.t7.lineHeight,
-  fontWeight: vars.weight.bold,
-  color: vars.brand.primary,
+// 세로로 쌓인 칸 안에서 늘어나지 않고 글자 폭만큼
+export const badge = style({
+  alignSelf: 'flex-start',
 })
 
 export const title = style({
@@ -89,4 +86,9 @@ export const stepCharacter = style({
   width: `calc(100% - 2 * ${SLOT_PADDING})`,
   height: `calc(100% - 2 * ${SLOT_PADDING})`,
   objectFit: 'contain',
+})
+
+export const highlight = style({
+  fontWeight: vars.weight.semibold,
+  color: vars.brand.primary,
 })

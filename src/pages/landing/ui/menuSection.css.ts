@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
-import { BLOCK_GAP, CARD_RADIUS, GUTTER, HAIRLINE, HERO_OVERLAP, REVEAL_DURATION, REVEAL_EASE, SECTION_SPACE, SPACE, STAGGER } from './landing.css.ts'
+import { BLOCK_GAP, CARD_RADIUS, GUTTER, HAIRLINE, REVEAL_DURATION, REVEAL_EASE, SECTION_SPACE, SPACE, STAGGER } from './landing.css.ts'
 
 // 메뉴 카드: 모바일은 다섯 장이 390px 화면에 들어가는 크기, 겹침은 카드끼리 살짝 포개지는 정도
 const CARD_WIDTH = '4.75rem'
@@ -24,7 +24,7 @@ export const section = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: BLOCK_GAP,
-  padding: `calc(${SECTION_SPACE} + ${HERO_OVERLAP}) ${GUTTER} ${SECTION_SPACE}`,
+  padding: `${SECTION_SPACE} ${GUTTER}`,
   // 히어로 아래쪽 색(orange50)에서 이어 받아 흰색으로 풀려서 섹션 경계선이 생기지 않음
   backgroundImage: [
     `linear-gradient(to bottom, ${vars.palette.orange50}, transparent 40%)`,

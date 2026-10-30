@@ -1,4 +1,4 @@
-import { keyframes, style } from '@vanilla-extract/css'
+import { globalStyle, keyframes, style } from '@vanilla-extract/css'
 import { breakpoint, vars } from '../../../shared/ui'
 
 // shortcut: 간격·둥글기·그림자 토큰이 없어 랜딩 안에서만 쓰는 값, 토큰이 정해지면 교체 (D-027)
@@ -42,8 +42,6 @@ export const REVEAL_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
 export const STAGGER = '0.12s'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
 
-// 히어로 캐릭터가 다음 섹션으로 겹쳐 내려오는 길이, 다음 섹션 위쪽 여백에 같은 값을 더함
-export const HERO_OVERLAP = SPACE[64]
 
 const ENTER_DURATION = '0.8s'
 
@@ -76,8 +74,15 @@ export const inView = style({
   transform: 'none',
 })
 
+// 한 화면씩 넘어가는 느낌: 섹션이 헤더 아래 한 화면을 채우고, 스크롤이 섹션 단위로 멈춤 (D-039)
+// 한 화면보다 긴 섹션(사용 예시)은 안에서 자유롭게 스크롤됨, 카드마다 멈추게 하면 관성 스크롤과 부딪쳐 버벅임
+export const SLIDE_HEIGHT = `calc(100svh - ${HEADER_HEIGHT})`
+
 export const section = style({
-  scrollMarginTop: HEADER_HEIGHT,
+  minHeight: SLIDE_HEIGHT,
+  boxSizing: 'border-box',
+  justifyContent: 'center',
+  scrollSnapAlign: 'start',
 })
 
 // 알약 버튼 공통: 버튼 아래 그림자로 살짝 떠 보이게 (랜딩 예외, D-033)
@@ -89,10 +94,11 @@ export const floatingShadow = style({
   boxShadow: `0 ${SPACE[8]} ${SPACE[24]} color-mix(in srgb, ${vars.brand.primary} 35%, transparent)`,
 })
 
+// 보조 버튼 글자는 히어로 보조 문구와 같은 회색 (D-036, AA 미달 한계 같음)
 export const secondaryButton = style({
   backgroundColor: vars.bg.base,
-  color: vars.text.primary,
-  boxShadow: `inset 0 0 0 ${HAIRLINE} ${vars.border.subtle}, 0 ${SPACE[4]} ${SPACE[16]} ${vars.palette.greyOpacity100}`,
+  color: vars.text.tertiary,
+  boxShadow: `0 ${SPACE[4]} ${SPACE[16]} ${vars.palette.greyOpacity100}`,
 })
 
 // 캐릭터 이미지: 폭만 정하고 높이는 원본 비율(width·height 속성)로
@@ -138,3 +144,10 @@ export const accentLine = style([
     color: 'transparent',
   },
 ])
+
+// 스크롤 멈춤은 랜딩이 열린 동안만 (다른 화면의 html에는 영향 없음)
+// 고정 헤더 높이만큼 띄워 멈춘 섹션 위쪽이 헤더에 가리지 않음, 메뉴 앵커 이동도 같은 기준
+globalStyle(`html:has(${page})`, {
+  scrollSnapType: 'y mandatory',
+  scrollPaddingTop: HEADER_HEIGHT,
+})

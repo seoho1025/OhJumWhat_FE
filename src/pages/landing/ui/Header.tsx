@@ -1,5 +1,6 @@
 import { GOOGLE_LOGIN_PATH } from '../../../shared/config'
 import { buttonStyle } from '../../../shared/ui'
+import logoIcon from './characters/logo.webp'
 import * as css from './header.css.ts'
 import { pill } from './landing.css.ts'
 
@@ -15,6 +16,7 @@ export function Header() {
     <header className={css.header}>
       <div className={css.inner}>
         <a href="#top" className={css.logo}>
+          <img src={logoIcon} alt="" width={96} height={96} className={css.logoIcon} />
           오점왓
         </a>
         <nav className={css.nav} aria-label="랜딩 메뉴">
@@ -31,9 +33,6 @@ export function Header() {
         <div className={css.actions}>
           <a href={GOOGLE_LOGIN_PATH} className={`${buttonStyle({ size: 'small' })} ${pill} ${css.loginButton}`}>
             로그인
-          </a>
-          <a href={GOOGLE_LOGIN_PATH} className={`${buttonStyle({ size: 'small' })} ${pill}`}>
-            체험해보기
           </a>
         </div>
       </div>

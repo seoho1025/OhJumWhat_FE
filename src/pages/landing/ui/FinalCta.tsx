@@ -3,13 +3,13 @@ import { buttonStyle } from '../../../shared/ui'
 import cheer from './characters/cheer.webp'
 import { useInView } from '../lib/useInView.ts'
 import * as css from './finalCta.css.ts'
-import { character, floatingShadow, inView, line, pill, reveal } from './landing.css.ts'
+import { character, floatingShadow, inView, line, pill, reveal, section } from './landing.css.ts'
 
 export function FinalCta() {
   const { ref, inView: visible } = useInView<HTMLDivElement>()
 
   return (
-    <section className={css.section} aria-labelledby="final-title">
+    <section className={`${section} ${css.section}`} aria-labelledby="final-title">
       <div ref={ref} className={`${css.content} ${reveal} ${visible ? inView : ''}`}>
         <img src={cheer} alt="" width={700} height={512} loading="lazy" className={`${character} ${css.cheer}`} />
         <h2 id="final-title" className={css.title}>

@@ -14,6 +14,7 @@ export const footer = style({
   fontSize: vars.font.t7.size,
   lineHeight: vars.font.t7.lineHeight,
   textAlign: 'center',
+  scrollSnapAlign: 'end',
 })
 
 export const name = style({

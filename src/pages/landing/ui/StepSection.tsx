@@ -2,6 +2,7 @@ import invite from './characters/invite.webp'
 import lunch from './characters/lunch.webp'
 import search from './characters/search.webp'
 import vote from './characters/vote.webp'
+import { Badge } from '../../../shared/ui'
 import { useInView } from '../lib/useInView.ts'
 import { character, inView, line, reveal, section, sectionTitle } from './landing.css.ts'
 import * as css from './stepSection.css.ts'
@@ -11,26 +12,42 @@ const STEPS = [
   {
     title: ['팀을 만들고', '동료를 초대하세요'],
     description: '초대 링크 하나로 같은 팀이 돼요.',
+    highlight: '초대 링크',
     image: { src: invite, width: 900, height: 643, alt: '휴대폰으로 초대 링크를 함께 보는 두 캐릭터' },
   },
   {
     title: ['먹고 싶은 메뉴를', '올리세요'],
     description: '근처 식당을 찾아 메뉴에 연결할 수 있어요.',
+    highlight: '근처 식당',
     image: { src: search, width: 800, height: 809, alt: '돋보기로 메뉴를 찾는 밥그릇 캐릭터' },
   },
   {
     title: ['투표하고', '이야기 나누세요'],
     description: '투표하면서 채팅으로 의견을 모아요.',
+    highlight: '채팅',
     image: { src: vote, width: 900, height: 633, alt: '투표함 옆에서 메뉴판을 든 밥그릇 캐릭터' },
   },
   {
     title: ['마감되면', '오늘 점심 결정'],
     description: '쌓인 기록으로 우리 팀 메뉴 통계를 볼 수 있어요.',
+    highlight: '메뉴 통계',
     image: { src: lunch, width: 900, height: 499, alt: '한 식탁에 둘러앉아 점심을 먹는 캐릭터들' },
   },
 ] as const
 
 type Step = (typeof STEPS)[number]
+
+// 설명 안의 한 단어만 메인 색으로 (단어는 설명에 한 번만 나옴)
+function Highlighted({ text, word }: { text: string; word: string }) {
+  const [before, after] = text.split(word)
+  return (
+    <>
+      {before}
+      <strong className={css.highlight}>{word}</strong>
+      {after}
+    </>
+  )
+}
 
 function StepCard({ step, index }: { step: Step; index: number }) {
   const { ref, inView: visible } = useInView<HTMLLIElement>()
@@ -38,7 +55,9 @@ function StepCard({ step, index }: { step: Step; index: number }) {
   return (
     <li ref={ref} className={`${css.card} ${reveal} ${visible ? inView : ''}`}>
       <div className={css.text}>
-        <span className={css.label}>STEP {index + 1}</span>
+        <Badge variant="fill" size="medium" color="primary" className={css.badge}>
+          STEP {index + 1}
+        </Badge>
         <h3 className={css.title}>
           {step.title.map((text) => (
             <span key={text} className={line}>
@@ -46,7 +65,9 @@ function StepCard({ step, index }: { step: Step; index: number }) {
             </span>
           ))}
         </h3>
-        <p className={css.description}>{step.description}</p>
+        <p className={css.description}>
+          <Highlighted text={step.description} word={step.highlight} />
+        </p>
       </div>
       <div className={css.screenSlot}>
         <img

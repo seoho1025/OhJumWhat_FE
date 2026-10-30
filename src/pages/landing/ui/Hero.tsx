@@ -1,8 +1,8 @@
 import { GOOGLE_LOGIN_PATH } from '../../../shared/config'
 import { buttonStyle } from '../../../shared/ui'
-import welcome from './characters/welcome.webp'
 import * as css from './hero.css.ts'
-import { accentLine, character, displayTitle, floatingShadow, pill, secondaryButton } from './landing.css.ts'
+import { PhoneMockup } from './PhoneMockup.tsx'
+import { accentLine, displayTitle, floatingShadow, pill, secondaryButton } from './landing.css.ts'
 
 type HeroProps = {
   errorMessage?: string
@@ -31,8 +31,7 @@ export function Hero({ errorMessage }: HeroProps) {
           시작하기
         </a>
       </div>
-      {/* 첫 화면 이미지라 바로 불러옴, 문구가 내용을 전하므로 장식(alt 비움) */}
-      <img src={welcome} alt="" width={1000} height={926} fetchPriority="high" className={`${character} ${css.heroCharacter}`} />
+      <PhoneMockup />
     </section>
   )
 }
