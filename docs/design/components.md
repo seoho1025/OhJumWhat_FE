@@ -13,7 +13,7 @@ TDS Mobile 컴포넌트 카탈로그 (2026-10-29 문서 기준 요약, 원문 �
 ## 버튼, 액션 
 | 컴포넌트 | 핵심 props | 메모 |
 |---|---|---|
-| Button | color(primary/danger/light/dark), variant(fill/weak), size(small~xlarge), display(inline/block/full), loading, disabled, as(button/a) | 값은 design.md Button 표 |
+| Button | color(primary/danger/light/dark), variant(fill/weak), size(small~xlarge), display(inline/block/full), loading, disabled, 링크는 buttonStyle (D-028, as prop 없음) | 값은 design.md Button 표 |
 | TextButton | size(xsmall~xxlarge), variant(clear/arrow/underline), disabled | 글자 props 상속 |
 | IconButton | aria-label(필수), variant(clear/fill/border), name 또는 src, color, bgColor(greyOpacity100), iconSize(24) | 아이콘 출처는 프로젝트에서 결정 |
 | BottomCTA | Single(children) / Double(leftButton, rightButton), fixed, takeSpace, background(default/none), topAccessory, bottomAccessory, hideOnScroll, showAfterDelay | 아래 여백 max(safe-area, 20px), [웹] 데스크톱 배치 결정 |
@@ -54,10 +54,10 @@ TDS Mobile 컴포넌트 카탈로그 (2026-10-29 문서 기준 요약, 원문 �
 | ListRow | left, contents, right, withArrow, border(indented/none), verticalPadding(small 8/medium 12/large 16/xlarge 24), horizontalPadding(small 20/medium 24), disabled, disabledStyle(type1/type2) | 하위 AssetIcon(shape), IconButton, Texts, Loader |
 | ListHeader | title(TitleParagraph/TitleSelector/TitleTextButton), description, descriptionPosition(top/bottom), right(RightText/RightArrow), titleWidthRatio(0.66) | |
 | ListFooter | children("더 보기"), icon, border(full/indented/none), textColor·iconColor(blue500), shadow | |
-| BoardRow | title, prefix, icon, children, initialOpened, isOpened + onOpen/onClose | 아코디언, Text 기본 t6, Prefix 기본 st8·blue500 |
+| BoardRow | title, prefix, icon, children, initialOpened, isOpened + onOpen/onClose | 아코디언(주로 Q&A), 제목은 button + aria-expanded, Prefix와 제목 간격 8, Prefix st8 regular·blue500(프로젝트는 brand.primary), 본문 t6·아래 여백 24, ArrowIcon 24·grey400. 여닫는 움직임과 행 간격은 원문에 없음 → 랜딩 FAQ에서 0.3s 높이 전환, 화살표 90° 회전, 행 20/24 (D-033) |
 | TableRow | left, right, align(left/space-between, 필수), leftRatio | |
 | GridList | column(1/2/3, 기본 3), Item(image, children) | |
-| Border | variant(full/padding24/height16), height | 항목 구분 full·padding24, 구간 구분 height16 |
+| Border | variant(full 기본/padding24/height16), height(height16일 때만, 높이 직접 지정) | 항목 구분: full(전체 너비) 또는 padding24(여백 24, 원문이 "양쪽"과 "왼쪽"으로 다르게 설명 → 구현 전 렌더링 확인), 구간 구분: height16(높이 16 띠). 선 두께·색은 원문에 없음 → 테두리 의미 토큰 정할 때 결정 |
 | Top | title, subtitleTop, subtitleBottom, upper, lower, right, upperGap(24), lowerGap(24) | 화면 상단 제목 영역, LowerButton 기본 small |
 | Tab | Item(selected, redBean), onChange(index), size(large/small), fluid, itemGap | |
 | Stepper | play, delay, staggerDelay(0.1), Row(left, center, right, hideLine) | 단계 안내 |
@@ -66,7 +66,7 @@ TDS Mobile 컴포넌트 카탈로그 (2026-10-29 문서 기준 요약, 원문 �
 ## 표시, 피드백 
 | 컴포넌트 | 핵심 props | 메모 |
 |---|---|---|
-| Badge | variant(fill/weak), size(xsmall~large), color(blue/teal/green/red/yellow/elephant) 모두 필수 | |
+| Badge | variant(fill/weak), size(xsmall~large), color(blue/teal/green/red/yellow/elephant) 모두 필수 | 크기·색 값은 원문에 없음 → 현업 기준으로 구현, 프로젝트 color primary 추가 (design.md Badge, D-038) |
 | Paragraph | typography(필수), display(block/inline), ellipsisAfterLines, textAlign, fontWeight, color | 하위 Text, 링크·배지 둥글기는 typography별 |
 | Post | H1(t2)·H2(t3)·H3(st8) 등 제목, Paragraph, Ul/Li, paddingBottom | 본문 글 구조 |
 | Bubble | background(blue=나/grey=상대, 필수), withTail(true) | 채팅 말풍선, 꼬리는 나 오른쪽·상대 왼쪽 |

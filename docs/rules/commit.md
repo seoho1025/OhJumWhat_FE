@@ -14,3 +14,9 @@ feat, fix, docs, style, refactor, test, chore, ci, build, perf, revert
 ## 원칙 
 - 한 커밋에는 한 가지 변경만
 - --no-verify 사용 금지
+
+## 브랜치 
+feature/<이슈번호>-<동사>-<기능>
+- 예: feature/1-add-landing 
+- 이슈를 먼저 만들고 번호를 붙임, 동사와 기능은 영어 소문자, 단어는 - 로 연결 
+- 작업이 끝나면 PR 본문에 Closes #<이슈번호> 

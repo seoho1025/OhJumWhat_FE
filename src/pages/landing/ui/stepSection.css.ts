@@ -1,0 +1,94 @@
+import { style } from '@vanilla-extract/css'
+import { breakpoint, vars } from '../../../shared/ui'
+import { BLOCK_GAP, CARD_RADIUS, CONTENT_MAX, GUTTER, SECTION_SPACE, SPACE, WIDE_MAX } from './landing.css.ts'
+
+// 데스크톱 2단: 설명보다 화면 자리를 넓게
+const DESKTOP_COLUMNS = '1fr 1.4fr'
+const SCREEN_RATIO = '4 / 3'
+const SCREEN_RADIUS = SPACE[16]
+
+export const section = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: BLOCK_GAP,
+  padding: `${SECTION_SPACE} ${GUTTER}`,
+  backgroundColor: vars.bg.grey,
+})
+
+export const list = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: SPACE[16],
+  width: '100%',
+  // 1024px 미만은 콘텐츠 최대 768px (design.md 레이아웃)
+  maxWidth: CONTENT_MAX,
+  margin: 0,
+  padding: 0,
+  listStyle: 'none',
+  '@media': {
+    [breakpoint.desktop]: { maxWidth: WIDE_MAX },
+  },
+})
+
+export const card = style({
+  display: 'grid',
+  gap: SPACE[24],
+  padding: `${SPACE[32]} ${SPACE[24]}`,
+  borderRadius: CARD_RADIUS,
+  backgroundColor: vars.bg.layered,
+  '@media': {
+    [breakpoint.desktop]: { gridTemplateColumns: DESKTOP_COLUMNS, alignItems: 'center', padding: SPACE[48] },
+  },
+})
+
+export const text = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: SPACE[12],
+})
+
+// 세로로 쌓인 칸 안에서 늘어나지 않고 글자 폭만큼
+export const badge = style({
+  alignSelf: 'flex-start',
+})
+
+export const title = style({
+  margin: 0,
+  fontSize: vars.font.t3.size,
+  lineHeight: vars.font.t3.lineHeight,
+  fontWeight: vars.weight.bold,
+})
+
+export const description = style({
+  margin: 0,
+  fontSize: vars.font.t6.size,
+  lineHeight: vars.font.t6.lineHeight,
+  color: vars.text.secondary,
+})
+
+// 단계별 캐릭터 자리 (D-037)
+export const screenSlot = style({
+  position: 'relative',
+  aspectRatio: SCREEN_RATIO,
+  borderRadius: SCREEN_RADIUS,
+  // 랜딩 그라데이션은 orange 계열, 투명, 흰색만 (D-025)
+  backgroundImage: `linear-gradient(to bottom right, ${vars.palette.orange50}, ${vars.bg.base})`,
+})
+
+// 캐릭터마다 가로세로 비율이 달라, 칸(4:3) 안쪽 여백 안에서 잘리지 않게 맞춤
+const SLOT_PADDING = SPACE[24]
+
+export const stepCharacter = style({
+  position: 'absolute',
+  top: SLOT_PADDING,
+  left: SLOT_PADDING,
+  width: `calc(100% - 2 * ${SLOT_PADDING})`,
+  height: `calc(100% - 2 * ${SLOT_PADDING})`,
+  objectFit: 'contain',
+})
+
+export const highlight = style({
+  fontWeight: vars.weight.semibold,
+  color: vars.brand.primary,
+})
