@@ -105,6 +105,8 @@ export const vars = createGlobalTheme(':root', {
     grey: palette.grey100,
     layered: '#ffffff',
     floated: '#ffffff',
+    // TDS 문서에 없음, 어두운 구역(랜딩 마지막 CTA·푸터)용 (D-030)
+    inverse: palette.grey900,
   },
   // TDS 문서에 없어 원색에서 정의, 흰 배경 대비 primary 16.6:1, secondary 4.6:1 (D-027)
   text: {
@@ -117,6 +119,13 @@ export const vars = createGlobalTheme(':root', {
   brand: {
     primary: palette.orange800,
     onPrimary: '#ffffff',
+    // 연한 강조 배경(안내 문구), 글자는 text.primary (D-030)
+    weak: palette.orange50,
+  },
+  // TDS Border 문서에 선 색이 없어 원색에서 정의 (D-030)
+  border: {
+    subtle: palette.grey200,
+    inverse: palette.grey800,
   },
   font: {
   t1: text(30, 40),
