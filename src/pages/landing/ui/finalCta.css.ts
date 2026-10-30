@@ -1,15 +1,14 @@
 import { style } from '@vanilla-extract/css'
-import { vars } from '../../../shared/ui'
-import { GUTTER, SECTION_SPACE, sectionTitle, SPACE } from './landing.css.ts'
+import { GUTTER, SECTION_SPACE, sectionTitle, SLIDE_HEIGHT, SPACE } from './landing.css.ts'
+import { FOOTER_HEIGHT } from './footer.css.ts'
 
+// 마지막 화면 = 이 섹션 + 푸터가 정확히 한 화면, 멈춤 지점이 하나라 덜그럭거리지 않음 (D-040)
 export const section = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: SPACE[32],
-  padding: `calc(${SECTION_SPACE} * 1.5) ${GUTTER}`,
-  backgroundColor: vars.bg.inverse,
-  backgroundImage: `radial-gradient(50% 60% at 50% 100%, ${vars.palette.orange900}, transparent)`,
+  minHeight: `calc(${SLIDE_HEIGHT} - ${FOOTER_HEIGHT})`,
+  padding: `${SECTION_SPACE} ${GUTTER}`,
   textAlign: 'center',
 })
 
@@ -24,4 +23,4 @@ export const cheer = style({
   width: 'min(14rem, 50vw)',
 })
 
-export const title = style([sectionTitle, { color: vars.text.inverse }])
+export const title = style([sectionTitle])
