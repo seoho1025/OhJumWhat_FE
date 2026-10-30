@@ -20,3 +20,8 @@ feature/<이슈번호>-<동사>-<기능>
 - 예: feature/1-add-landing 
 - 이슈를 먼저 만들고 번호를 붙임, 동사와 기능은 영어 소문자, 단어는 - 로 연결 
 - 작업이 끝나면 PR 본문에 Closes #<이슈번호> 
+
+## PR 
+- 제목: [#이슈번호] <type>: <요약> (예: [#1] feat: 랜딩 페이지 1차) 
+- 본문은 .github/pull_request_template.md, Closes #<이슈번호> 필수 
+- 병합: feature/* → main 
