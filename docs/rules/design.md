@@ -82,6 +82,10 @@
 - 동의(Agreement) 그룹: 왼쪽 세로 그라데이션 선 
 - 퍼짐 효과 예: radial-gradient(closest-side, blue100 0%, transparent 100%) 
 - 그라데이션 색은 의미 토큰에서 투명으로만, 임의 색 조합 금지 
+- 예외: 랜딩 페이지(pages/landing)만 장식 그라데이션 허용 (D-025) 
+  - 용도: 제목 글자색, 히어로·섹션 배경 빛 번짐, 카드 배경 
+  - 색: palette의 orange 계열(50~900)과 투명, 흰색만 / 다른 색상군 섞기 금지 
+  - 앱 화면(로그인 이후)에는 적용 금지 
 
 ## 드롭다운, 선택 
 - Menu: Menu.Trigger(트리거 + dropdown) → Menu.Dropdown(header) → Menu.DropdownItem(left, right) 
