@@ -8,10 +8,11 @@
 ## 명령 
 - 개발 서버: pnpm dev
 - 타입 검사 : pnpm exec tsc -b
-- 전체 검증: pnpm check (타입 + 린트 + FSD + 테스트)
+- 전체 검증: pnpm check (타입 + 린트 + FSD + 테스트 + 빌드)
 
 ## 반드시 지켜야 할 수칙 
 - 작업 완료 전 pnpm check 통과
+- UI 작업 완료 보고 전 docs/rules/design.md, docs/rules/code-quality.md 항목별 대조표(지킴 / 어긋남 / 미확인)를 보고에 포함
 - git commit --no-verify 사용 금지, 훅에 막히면 원인을 고칠 것 
 - 커밋은 docs/rules/commit.md 컨벤션, 한 커밋에 한가지 변경 
 - Tailwind, 인라인 style 금지 
@@ -26,6 +27,7 @@
 - API 정보는 docs/API.md에 요약으로만 기록 
 - .env 생성, 수정, 커밋 금지, 변수는 .env.example에 이름만 
 - API 키, 토큰, 서버 주소 하드 코딩 금지 
+- 검증용 임시 파일(캡처, 스크립트, 브라우저 프로필)은 node_modules/.cache 아래에만 만들고 끝나면 삭제 
 
 ## 작업별로 읽을 문서 
 - UI 작업 -> docs/rules/design.md, docs/design/components.md
