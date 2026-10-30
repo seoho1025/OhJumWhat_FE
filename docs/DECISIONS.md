@@ -185,3 +185,13 @@
 - 결정: shared/ui에서 recipe를 buttonStyle로 내보내 <a className={buttonStyle()}>로 사용, button base에 textDecoration none
 - 이유: 링크 의미(새 탭 열기, 스크린 리더 "링크")를 유지하면서 스타일은 한 곳에서 관리, 코드가 가장 적음
 - 대안: Button에 href 또는 as prop 추가, onClick으로 location 이동(링크 의미 상실)
+
+## D-029 랜딩 코드 구조: 응집도 우선 (2026-10-30)
+- 맥락: 1차 코드가 문구를 config/content.ts에, 다섯 섹션 스타일을 landing.css.ts 하나에 모아 둠 (code-quality.md 응집도·결합도 점검)
+- 결정
+  - 문구는 각 섹션 컴포넌트 안에 둠, 로그인 오류 문구만 테스트와 함께 lib/loginError.ts
+  - 스타일은 섹션마다 <섹션>.css.ts, 공통(간격 상수, 제목, 등장 애니메이션)만 landing.css.ts
+  - 반복되거나 서로 연결된 숫자는 이름 있는 상수 (예: PHONE_OVERLAP은 히어로 아래 겹침과 다음 섹션 여백에 함께 쓰임)
+- 우선한 기준: 응집도(함께 바뀌는 문구와 마크업, 섹션과 스타일을 한곳에) > 문구만 모아 보는 편의
+- 대안: config에 문구 모으기 (문구 검토는 편하지만 섹션 하나를 고칠 때 파일 두 개를 오감)
+- 검증: 리팩터 전후 화면 캡처(1280, 390)가 픽셀 단위로 같음
